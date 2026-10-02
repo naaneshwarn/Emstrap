@@ -1,0 +1,10 @@
+{
+  "description": "Enterprise platform delivering integrated emergency response solutions for corporations, governments, and public safety agencies to enhance coordination and safety.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

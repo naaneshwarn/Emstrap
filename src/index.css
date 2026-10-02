@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-navy-deep: #07162B;
+  --color-navy-dark: #0D1B32;
+  --color-navy-mid: #122040;
+  --color-brand-red: #ED171F;
+  --color-red-muted: #FFEAEA;
+  --color-red-pale: #FFF5F5;
+  --color-blue-accent: #0878F9;
+  --color-content-primary: #101D3A;
+  --color-content-secondary: #5D6B82;
+  --color-surface-light: #F5F8FC;
+  --color-border-default: #DCE4EE;
+  --color-border-light: #EEF2F8;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #101D3A;
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DCE4EE;
+  border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   EMSTRAP HIGH-IMPACT ENTERPRISE ANIMATION SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. Hero Animations (Noticeable, Clean Staggered Sequence) ───────────────── */
+@keyframes heroEyebrowIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroHeadingIn {
+  0% {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroDescIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBtnIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageZoom {
+  0% {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-hero-eyebrow {
+  opacity: 0;
+  animation: heroEyebrowIn 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-heading {
+  opacity: 0;
+  animation: heroHeadingIn 700ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-desc {
+  opacity: 0;
+  animation: heroDescIn 600ms 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-btn {
+  opacity: 0;
+  animation: heroBtnIn 500ms 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-tags {
+  opacity: 0;
+  animation: heroBtnIn 500ms 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-hero-image {
+  animation: heroImageZoom 1200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── 2. Scroll Reveal: Stronger Section Entrance (translateY 60px -> 0, 700ms) ─ */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 3. Section Headings Staggered Sequence ─────────────────────────────────── */
+.section-eyebrow-reveal {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.section-eyebrow-reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-heading-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 100ms;
+  will-change: opacity, transform;
+}
+
+.section-heading-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-desc-reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 250ms;
+  will-change: opacity, transform;
+}
+
+.section-desc-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 4. Cards Entrance (translateY 45px scale(0.97) -> translateY(0) scale(1)) ── */
+.card-entry {
+  opacity: 0;
+  transform: translateY(45px) scale(0.97);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.card-entry.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ─── 5. Card Interactive Hover (translateY -8px, Elevated Shadow, 350ms) ──────── */
+.card-hover-box {
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.card-hover-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -8px rgba(7, 22, 43, 0.14), 0 8px 16px -4px rgba(7, 22, 43, 0.07);
+  border-color: rgba(7, 22, 43, 0.28);
+}
+
+/* ─── 6. Card Image Zoom on Hover (scale 1.06, 500ms ease) ─────────────────────── */
+.card-zoom-img {
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-hover-box:hover .card-zoom-img {
+  transform: scale(1.06);
+}
+
+/* ─── 7. Card Icon Animation (scale 1.12, rotate 3deg) ────────────────────────── */
+.icon-hover-box {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.group:hover .icon-hover-box,
+.card-hover-box:hover .icon-hover-box {
+  transform: scale(1.12) rotate(3deg);
+}
+
+/* ─── 8. Button Hover & Active Feedback ────────────────────────────────────────── */
+.btn-smooth {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 220ms ease,
+              border-color 220ms ease;
+  will-change: transform, box-shadow;
+}
+
+.btn-smooth:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -4px rgba(237, 23, 31, 0.35);
+}
+
+.btn-smooth:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Secondary outline button hover shadow */
+.btn-outline-smooth {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 220ms ease,
+              border-color 220ms ease;
+  will-change: transform, box-shadow;
+}
+
+.btn-outline-smooth:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -4px rgba(7, 22, 43, 0.2);
+}
+
+.btn-outline-smooth:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ─── 9. Ecosystem Process Flow Animation ──────────────────────────────────────── */
+.step-entry {
+  opacity: 0;
+  transform: translateY(35px) scale(0.95);
+  transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.step-entry.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.step-photo-hover {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-photo-hover:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 20px -4px rgba(7, 22, 43, 0.15);
+}
+
+.step-arrow-entry {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-arrow-entry.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── 10. Page Transition ──────────────────────────────────────────────────────── */
+@keyframes pageFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageFadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── 11. Navbar Link Hover Indicator ──────────────────────────────────────────── */
+.nav-link-item {
+  position: relative;
+  transition: color 250ms ease;
+}
+
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-brand-red);
+  transition: width 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-item:hover::after {
+  width: 100%;
+}
+
+/* ─── 12. Footer Reveal & Link Micro-Interactions ──────────────────────────────── */
+.footer-col-entry {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.footer-col-entry.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer-link {
+  display: inline-block;
+  transition: color 200ms ease, transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-link:hover {
+  transform: translateX(3px);
+  color: #ffffff;
+}
+
+/* ─── 13. Controlled Enterprise Glassmorphism ───────────────────────────────────── */
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(220, 228, 238, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(7, 22, 43, 0.05), 0 4px 12px -2px rgba(7, 22, 43, 0.02);
+}
+
+.glass-panel-dark {
+  background: rgba(13, 27, 50, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.4), 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card-interactive {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 228, 238, 0.8);
+  box-shadow: 0 4px 16px -2px rgba(7, 22, 43, 0.05);
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 350ms ease;
+  will-change: transform, box-shadow;
+}
+
+.glass-card-interactive:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(7, 22, 43, 0.25);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -8px rgba(7, 22, 43, 0.12), 0 8px 16px -4px rgba(7, 22, 43, 0.06);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.glass-pill-control {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-pill-control:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.40);
+  transform: scale(1.06);
+}
+
+.glass-pill-control:active {
+  transform: scale(0.95);
+}
+
+/* ─── 14. Floating Card Banner Animation System ────────────────────────────────── */
+@keyframes cardFloatDrift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.banner-floating {
+  animation: cardFloatDrift 4.6s ease-in-out infinite;
+}
+
+.banner-card-slide-in {
+  animation: bannerSlideIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bannerSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bannerSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+}
+
+.banner-card-slide-out {
+  animation: bannerSlideOut 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* ─── 15. Accessibility: Prefers-Reduced-Motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-hero-eyebrow,
+  .animate-hero-heading,
+  .animate-hero-desc,
+  .animate-hero-btn,
+  .animate-hero-tags,
+  .animate-hero-image,
+  .section-reveal,
+  .section-eyebrow-reveal,
+  .section-heading-reveal,
+  .section-desc-reveal,
+  .card-entry,
+  .step-entry,
+  .step-arrow-entry,
+  .footer-col-entry,
+  .page-transition,
+  .banner-floating,
+  .banner-card-slide-in,
+  .banner-card-slide-out,
+  .pulse-glow {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
