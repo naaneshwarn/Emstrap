@@ -529,7 +529,107 @@ body {
   }
 }
 
-/* ─── 15. Accessibility: Prefers-Reduced-Motion ─────────────────────────────────── */
+/* ─── 15. Challenge & How Helps Infinite Horizontal Marquees ──────────────────── */
+.challenge-marquee-container,
+.how-helps-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.challenge-marquee-track,
+.how-helps-marquee-track {
+  display: flex;
+  width: max-content;
+  user-select: none;
+}
+
+.challenge-marquee-group {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  animation: challengeMarquee 40s linear infinite;
+  will-change: transform;
+}
+
+.how-helps-marquee-group {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  animation: howHelpsMarquee 42s linear infinite;
+  will-change: transform;
+}
+
+.challenge-marquee-container:hover .challenge-marquee-group,
+.how-helps-marquee-container:hover .how-helps-marquee-group {
+  animation-play-state: paused;
+}
+
+@keyframes challengeMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes howHelpsMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Staggered Card Entrance for Challenge (Problem -> Awareness) */
+.challenge-card-entry {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.challenge-card-entry.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Staggered Card Entrance for How Helps (Solution Rising & Settling) */
+.solution-card-entry {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.solution-card-entry.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Unique Card Hover Interaction */
+.motion-card-hover {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.motion-card-hover:hover {
+  transform: translate3d(0, -5px, 0) scale(1.02);
+  box-shadow: 0 12px 28px -6px rgba(7, 22, 43, 0.12), 0 4px 10px -2px rgba(7, 22, 43, 0.06);
+  border-color: rgba(7, 22, 43, 0.22);
+}
+
+.motion-card-hover:hover .card-zoom-img {
+  transform: scale(1.03);
+}
+
+/* ─── 16. Accessibility: Prefers-Reduced-Motion ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -556,19 +656,30 @@ body {
   .banner-card-slide-in,
   .banner-card-slide-out,
   .pulse-glow,
-  .benefits-marquee-group {
+  .benefits-marquee-group,
+  .challenge-marquee-group,
+  .how-helps-marquee-group,
+  .challenge-card-entry,
+  .solution-card-entry,
+  .motion-card-hover {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
   }
-  .benefits-marquee-container {
+  .benefits-marquee-container,
+  .challenge-marquee-container,
+  .how-helps-marquee-container {
     overflow-x: auto;
   }
-  .benefits-marquee-track {
+  .benefits-marquee-track,
+  .challenge-marquee-track,
+  .how-helps-marquee-track {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
   }
-  .benefits-marquee-group[aria-hidden="true"] {
+  .benefits-marquee-group[aria-hidden="true"],
+  .challenge-marquee-group[aria-hidden="true"],
+  .how-helps-marquee-group[aria-hidden="true"] {
     display: none !important;
   }
 }
