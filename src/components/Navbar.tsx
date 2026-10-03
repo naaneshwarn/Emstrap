@@ -104,9 +104,6 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
-          <a href="#" className="px-4 py-2 text-[13px] font-semibold text-brand-red bg-red-pale border border-red-200 rounded-[4px] hover:bg-red-muted btn-smooth">
-            Emergency
-          </a>
           <a href="#" className="px-5 py-2 text-[13px] font-semibold text-white bg-brand-red rounded-[4px] hover:bg-[#CC1218] btn-smooth">
             Login
           </a>
@@ -114,9 +111,6 @@ export default function Navbar() {
 
         {/* Mobile controls */}
         <div className="flex lg:hidden items-center gap-2">
-          <a href="#" className="px-3 py-1.5 text-[12px] font-semibold text-brand-red bg-red-pale border border-red-200 rounded-[4px] btn-smooth">
-            Emergency
-          </a>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="p-2 text-navy-deep transition-transform duration-200"

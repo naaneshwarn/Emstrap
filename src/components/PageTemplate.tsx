@@ -273,11 +273,6 @@ function FeatureCard({
             className="w-full h-full object-cover card-zoom-img"
             loading="lazy"
           />
-          {number && (
-            <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-deep/90 text-white text-[11px] font-semibold tracking-wide rounded-[3px]">
-              {number}
-            </div>
-          )}
         </div>
         <div className="p-4 flex-1">
           <h3 className="text-[14px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
@@ -380,9 +375,6 @@ function EcosystemStep({
             className="w-full h-full object-cover card-zoom-img"
             loading="lazy"
           />
-        </div>
-        <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-brand-red mb-1">
-          {String(index + 1).padStart(2, '0')}
         </div>
         <div className="text-[13px] font-semibold text-content-primary mb-1 leading-snug">
           {step.title}

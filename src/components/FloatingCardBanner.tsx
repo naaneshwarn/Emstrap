@@ -370,10 +370,29 @@ export default function FloatingCardBanner({
 
   const activeCard = cards[currentIndex] ?? cards[0];
 
+  const startTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % cards.length);
+    }, 5000);
+  };
+
+  const resetTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    if (!isPaused && cards.length > 1) {
+      startTimer();
+    }
+  };
+
   const handleNext = () => {
     if (animating) return;
     setAnimating(true);
     setCurrentIndex((prev) => (prev + 1) % cards.length);
+    resetTimer();
     setTimeout(() => setAnimating(false), 500);
   };
 
@@ -381,6 +400,7 @@ export default function FloatingCardBanner({
     if (animating) return;
     setAnimating(true);
     setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
+    resetTimer();
     setTimeout(() => setAnimating(false), 500);
   };
 
@@ -388,45 +408,29 @@ export default function FloatingCardBanner({
     if (animating || index === currentIndex) return;
     setAnimating(true);
     setCurrentIndex(index);
+    resetTimer();
     setTimeout(() => setAnimating(false), 500);
   };
 
-  // Auto-advance loop every 4.8s, paused on hover
+  // Auto-advance loop every 5.0s (5000ms), paused on hover
   useEffect(() => {
     if (isPaused || cards.length <= 1) return;
-
-    timerRef.current = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % cards.length);
-    }, 4800);
+    startTimer();
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPaused, cards.length, currentIndex]);
+  }, [isPaused, cards.length]);
 
   return (
     <section
-      className="relative py-16 lg:py-20 bg-navy-deep overflow-hidden border-y border-white/10"
+      className="relative py-16 lg:py-20 bg-white overflow-hidden border-t border-border-default"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
       aria-label="EMSTRAP Live Operations Showcase"
     >
-      {/* Ambient background glows for controlled glassmorphism contrast */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 bg-brand-red/15 rounded-full blur-[110px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-blue-accent/15 rounded-full blur-[120px] pointer-events-none" />
-
-      {/* Subtle background tech grid */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      />
-
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16">
         {/* Banner Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
@@ -435,15 +439,15 @@ export default function FloatingCardBanner({
               <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" />
               {eyebrow}
             </div>
-            <h2 className="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-white tracking-tight leading-snug">
+            <h2 className="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-content-primary tracking-tight leading-snug">
               {title}
             </h2>
           </div>
 
           {/* Controls: Prev / Next buttons & Progress Counter */}
           <div className="flex items-center gap-3">
-            <span className="text-[12px] font-semibold text-white/50 tracking-wider">
-              <span className="text-white font-bold">{String(currentIndex + 1).padStart(2, '0')}</span>
+            <span className="text-[12px] font-semibold text-content-secondary tracking-wider">
+              <span className="text-content-primary font-bold">{String(currentIndex + 1).padStart(2, '0')}</span>
               {' / '}
               {String(cards.length).padStart(2, '0')}
             </span>
@@ -453,7 +457,7 @@ export default function FloatingCardBanner({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous operational showcase card"
-                className="glass-pill-control w-9 h-9 rounded-full flex items-center justify-center text-white/80 hover:text-white cursor-pointer"
+                className="w-9 h-9 rounded-full flex items-center justify-center bg-white border border-border-default text-content-primary hover:text-brand-red hover:border-brand-red shadow-xs transition-all duration-200 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M10 12L6 8L10 4" />
@@ -464,7 +468,7 @@ export default function FloatingCardBanner({
                 type="button"
                 onClick={handleNext}
                 aria-label="Next operational showcase card"
-                className="glass-pill-control w-9 h-9 rounded-full flex items-center justify-center text-white/80 hover:text-white cursor-pointer"
+                className="w-9 h-9 rounded-full flex items-center justify-center bg-white border border-border-default text-content-primary hover:text-brand-red hover:border-brand-red shadow-xs transition-all duration-200 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M6 12L10 8L6 4" />
@@ -474,28 +478,28 @@ export default function FloatingCardBanner({
           </div>
         </div>
 
-        {/* ─── The Floating Glassmorphic Card Container ─────────────────────── */}
+        {/* ─── The Floating Card Container ─────────────────────── */}
         <div className="max-w-[1240px] mx-auto">
           <div className="banner-floating">
-            <div className="glass-panel-dark rounded-[20px] overflow-hidden border border-white/20 transition-all duration-500">
+            <div className="bg-surface-light rounded-[20px] overflow-hidden border border-border-default shadow-md transition-all duration-500">
               <div
                 key={activeCard.id}
                 className="banner-card-slide-in grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[380px] lg:min-h-[420px]"
               >
                 {/* Visual / Image Side */}
-                <div className="relative lg:col-span-6 min-h-[260px] sm:min-h-[320px] lg:min-h-[420px] overflow-hidden bg-navy-mid">
+                <div className="relative lg:col-span-6 min-h-[260px] sm:min-h-[320px] lg:min-h-[420px] overflow-hidden bg-slate-100">
                   <img
                     src={activeCard.image}
                     alt={activeCard.imageAlt}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
                     loading="eager"
                   />
-                  {/* Subtle right shadow on desktop, bottom shadow on mobile */}
-                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-navy-deep/20 to-navy-deep/80 pointer-events-none" />
+                  {/* Subtle right shadow on desktop */}
+                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-black/10 to-black/30 pointer-events-none" />
 
                   {/* Status Indicator Badge */}
                   <div className="absolute top-4 left-4 z-10">
-                    <div className="glass-badge px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                    <div className="bg-navy-deep/85 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg border border-white/20">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -508,28 +512,28 @@ export default function FloatingCardBanner({
                 </div>
 
                 {/* Content Side */}
-                <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-navy-dark/60 backdrop-blur-md">
+                <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-white border-t lg:border-t-0 lg:border-l border-border-default">
                   <div>
                     <div className="text-[11px] font-semibold tracking-[0.14em] uppercase text-brand-red mb-2">
                       {activeCard.eyebrow}
                     </div>
-                    <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] font-bold text-white tracking-tight leading-snug mb-4">
+                    <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] font-bold text-content-primary tracking-tight leading-snug mb-4">
                       {activeCard.title}
                     </h3>
-                    <p className="text-[14px] sm:text-[15px] text-white/80 leading-relaxed mb-6">
+                    <p className="text-[14px] sm:text-[15px] text-content-secondary leading-relaxed mb-6">
                       {activeCard.description}
                     </p>
                   </div>
 
                   {/* Metrics and Action Bar */}
-                  <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="pt-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     {/* Metric Card */}
-                    <div className="glass-panel-dark px-4 py-2.5 rounded-[10px] border border-white/10 inline-flex items-center gap-3">
-                      <div className="text-[20px] font-extrabold text-white tracking-tight">
+                    <div className="bg-surface-light px-4 py-2.5 rounded-[10px] border border-border-default shadow-xs inline-flex items-center gap-3">
+                      <div className="text-[20px] font-extrabold text-content-primary tracking-tight">
                         {activeCard.metricValue}
                       </div>
-                      <div className="h-6 w-px bg-white/20" />
-                      <div className="text-[11px] font-medium uppercase tracking-wider text-white/70 leading-tight">
+                      <div className="h-6 w-px bg-border-default" />
+                      <div className="text-[11px] font-medium uppercase tracking-wider text-content-secondary leading-tight">
                         {activeCard.metricLabel}
                       </div>
                     </div>
@@ -562,7 +566,7 @@ export default function FloatingCardBanner({
               className={`cursor-pointer transition-all duration-300 rounded-full ${
                 idx === currentIndex
                   ? 'w-8 h-2.5 bg-brand-red'
-                  : 'w-2.5 h-2.5 bg-white/25 hover:bg-white/50'
+                  : 'w-2.5 h-2.5 bg-border-strong hover:bg-content-muted'
               }`}
             />
           ))}
