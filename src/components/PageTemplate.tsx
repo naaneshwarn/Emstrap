@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 import type { PageData } from '../data/pageData';
 import { useInView } from '../hooks/useInView';
@@ -315,8 +315,6 @@ function BenefitItem({
   iconName,
   title,
   description,
-  delayIndex = 0,
-  isVisible = true,
 }: {
   iconName: string;
   title: string;
@@ -326,22 +324,17 @@ function BenefitItem({
 }) {
   const isEmergency = ['zap', 'shield'].includes(iconName);
   return (
-    <div
-      className={`card-entry ${isVisible ? 'is-visible' : ''}`}
-      style={{ transitionDelay: `${delayIndex * 80}ms` }}
-    >
-      <div className="card-hover-box glass-card-interactive group flex flex-col gap-3 p-5 rounded-[8px] h-full">
-        <div
-          className={`w-10 h-10 flex items-center justify-center rounded-[4px] icon-hover-box ${
-            isEmergency ? 'bg-red-pale text-brand-red' : 'bg-surface-light text-blue-accent'
-          }`}
-        >
-          <div className="w-5 h-5">{ICONS[iconName] ?? ICONS.clock}</div>
-        </div>
-        <div>
-          <h3 className="text-[14px] font-semibold text-content-primary mb-1.5">{title}</h3>
-          <p className="text-[13px] text-content-secondary leading-[1.65]">{description}</p>
-        </div>
+    <div className="card-hover-box glass-card-interactive group flex flex-col gap-3 p-5 rounded-[8px] h-full w-full select-none">
+      <div
+        className={`w-10 h-10 flex items-center justify-center rounded-[4px] icon-hover-box flex-shrink-0 ${
+          isEmergency ? 'bg-red-pale text-brand-red' : 'bg-surface-light text-blue-accent'
+        }`}
+      >
+        <div className="w-5 h-5">{ICONS[iconName] ?? ICONS.clock}</div>
+      </div>
+      <div className="flex-1 flex flex-col">
+        <h3 className="text-[14px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
+        <p className="text-[13px] text-content-secondary leading-[1.65] flex-1">{description}</p>
       </div>
     </div>
   );
@@ -468,9 +461,14 @@ function HowHelpsSection({ data }: { data: PageData['howHelps'] }) {
 
 // ─── Section 03: Key Benefits ─────────────────────────────────────────────────
 function BenefitsSection({ data }: { data: PageData['benefits'] }) {
-  const [ref, inView] = useInView({ threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  const [ref, inView] = useInView({ threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplicate items to ensure smooth continuous stream across all viewport widths
+  const marqueeItems = [...data.items, ...data.items];
+
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-24 border-t border-border-default">
+    <section ref={ref} className="bg-white py-20 lg:py-24 border-t border-border-default overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
         {/* Header row */}
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-16 mb-12">
@@ -487,19 +485,60 @@ function BenefitsSection({ data }: { data: PageData['benefits'] }) {
             <div className="w-full h-px bg-border-default mt-2" />
           </div>
         </div>
+      </div>
 
-        {/* Benefits grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-          {data.items.map((item, idx) => (
-            <BenefitItem
-              key={item.title}
-              iconName={item.iconName}
-              title={item.title}
-              description={item.description}
-              delayIndex={idx}
-              isVisible={inView}
-            />
-          ))}
+      {/* Full-width continuous horizontal running cards marquee */}
+      <div
+        className="benefits-marquee-container relative overflow-hidden py-3"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        aria-label="Key Benefits Continuous Marquee"
+      >
+        {/* Ambient fade masks on left and right for smooth edge transitions */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
+        <div className="benefits-marquee-track flex">
+          {/* Group 1 */}
+          <div
+            className="benefits-marquee-group flex items-stretch gap-6 pr-6 flex-shrink-0"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          >
+            {marqueeItems.map((item, idx) => (
+              <div
+                key={`b1-${idx}-${item.title}`}
+                className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 flex"
+              >
+                <BenefitItem
+                  iconName={item.iconName}
+                  title={item.title}
+                  description={item.description}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Group 2 (identical duplicate for seamless infinite loop) */}
+          <div
+            className="benefits-marquee-group flex items-stretch gap-6 pr-6 flex-shrink-0"
+            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+            aria-hidden="true"
+          >
+            {marqueeItems.map((item, idx) => (
+              <div
+                key={`b2-${idx}-${item.title}`}
+                className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 flex"
+              >
+                <BenefitItem
+                  iconName={item.iconName}
+                  title={item.title}
+                  description={item.description}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

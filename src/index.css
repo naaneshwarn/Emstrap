@@ -495,6 +495,40 @@ body {
   animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
+/* ─── 14. Key Benefits Infinite Horizontal Marquee ─────────────────────────────── */
+.benefits-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.benefits-marquee-track {
+  display: flex;
+  width: max-content;
+  user-select: none;
+}
+
+.benefits-marquee-group {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  animation: benefitsMarquee 45s linear infinite;
+  will-change: transform;
+}
+
+.benefits-marquee-container:hover .benefits-marquee-group {
+  animation-play-state: paused;
+}
+
+@keyframes benefitsMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 /* ─── 15. Accessibility: Prefers-Reduced-Motion ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -521,10 +555,21 @@ body {
   .banner-floating,
   .banner-card-slide-in,
   .banner-card-slide-out,
-  .pulse-glow {
+  .pulse-glow,
+  .benefits-marquee-group {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+  .benefits-marquee-container {
+    overflow-x: auto;
+  }
+  .benefits-marquee-track {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .benefits-marquee-group[aria-hidden="true"] {
+    display: none !important;
   }
 }
 
