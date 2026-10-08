@@ -1,6 +1,5 @@
 export interface CardItem {
   image: string;
-  number?: string;
   title: string;
   description: string;
 }
@@ -66,7 +65,7 @@ export const pages: PageData[] = [
       backgroundImage: '/images/hero-corporate.jpg',
     },
     challenge: {
-      heading: 'Companies need to manage multiple safety and emergency scenarios.',
+      heading: 'Modern cities face complex emergency challenges.',
       description: 'From medical emergencies and fire incidents to complex multi-site evacuation, corporate safety demands a coordinated, technology-driven approach.',
       cards: [
         {
@@ -107,37 +106,31 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/cards/corp-employee-sos.jpg',
-          number: '01',
           title: 'Employee SOS',
           description: 'One-touch emergency activation for employees to trigger immediate assistance with real-time location sharing.',
         },
         {
           image: '/images/cards/corp-medical-support.jpg',
-          number: '02',
           title: 'Medical Emergency Support',
           description: 'Connect employees directly to ambulance services with location data and priority routing to the nearest hospital.',
         },
         {
           image: '/images/cards/corp-fire-panel.jpg',
-          number: '03',
           title: 'Fire Safety Management',
           description: 'Integrated fire incident management with evacuation tracking, headcount tools and fire service coordination.',
         },
         {
           image: '/images/cards/corp-briefing.jpg',
-          number: '04',
           title: 'Employee Training',
           description: 'Digital safety training programs that ensure every employee is prepared and aware of emergency procedures.',
         },
         {
           image: '/images/cards/corp-mock-drill.jpg',
-          number: '05',
           title: 'Mock Drills',
           description: 'Schedule and run structured emergency simulations with automated tracking, real-time monitoring and drill reporting.',
         },
         {
           image: '/images/cards/corp-safety-dashboard.jpg',
-          number: '06',
           title: 'Safety Management',
           description: 'A centralized platform for safety policies, incident records, compliance documentation and operational dashboards.',
         },
@@ -224,37 +217,31 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/cards/smartcity-citizen-access.jpg',
-          number: '01',
           title: 'Citizen Emergency Access',
           description: 'Give citizens a direct channel to activate emergency assistance with real-time location and incident data.',
         },
         {
           image: '/images/home-ambulance.jpg',
-          number: '02',
           title: 'Ambulance Integration',
           description: 'Connect ambulance dispatch and operations to city-wide emergency requests with intelligent assignment.',
         },
         {
           image: '/images/cards/smartcity-hospital-coordination.jpg',
-          number: '03',
           title: 'Hospital Coordination',
           description: 'Notify hospitals ahead of patient arrival to prepare receiving teams and optimize care pathways.',
         },
         {
           image: '/images/home-police.jpg',
-          number: '04',
           title: 'Police Integration',
           description: 'Equip police departments with real-time incident alerts, location intelligence and responder coordination.',
         },
         {
           image: '/images/home-traffic.jpg',
-          number: '05',
           title: 'Traffic Coordination',
           description: 'Enable traffic management teams to support emergency vehicle movement through corridor coordination.',
         },
         {
           image: '/images/home-smart-cities.jpg',
-          number: '06',
           title: 'Emergency Control Centres',
           description: 'Provide control rooms with a unified operational dashboard for city-wide emergency oversight.',
         },
@@ -341,37 +328,31 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/hero-traffic.jpg',
-          number: '01',
           title: 'Unified Emergency Coordination',
           description: 'A single platform connecting all government emergency services with shared alerts, incidents and response tracking.',
         },
         {
           image: '/images/hero-smart-cities.jpg',
-          number: '02',
           title: 'Command Centre',
           description: 'A centralized operations dashboard for senior officials to monitor all active incidents and direct resources.',
         },
         {
           image: '/images/home-government.jpg',
-          number: '03',
           title: 'Multi-Agency Coordination',
           description: 'Connect police, ambulance, hospitals, traffic authorities and emergency services on one operational network.',
         },
         {
           image: '/images/cards/gov-analytics.jpg',
-          number: '04',
           title: 'Analytics & Reporting',
           description: 'Operational data and incident analytics to support evidence-based emergency management decisions.',
         },
         {
           image: '/images/cards/gov-cloud-infra.jpg',
-          number: '05',
           title: 'Scalable Infrastructure',
           description: 'Deploy across districts, regions or the entire national emergency management system with consistent architecture.',
         },
         {
           image: '/images/cards/gov-audit-records.jpg',
-          number: '06',
           title: 'Digital Incident Records',
           description: 'End-to-end digital records for every emergency event, supporting audit, compliance and post-incident review.',
         },
@@ -458,37 +439,31 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/cards/amb-cad-dispatch.jpg',
-          number: '01',
           title: 'Intelligent Emergency Dispatch',
           description: 'Automated emergency intake with smart assignment of the nearest available ambulance based on live fleet data.',
         },
         {
           image: '/images/cards/traffic-cctv-monitoring.jpg',
-          number: '02',
           title: 'Real-Time GPS Tracking',
           description: 'Live location monitoring of every ambulance in the fleet from a centralized dispatch dashboard.',
         },
         {
           image: '/images/cards/amb-navigation.jpg',
-          number: '03',
           title: 'Smart Routing',
           description: 'Route optimization and traffic coordination to minimize response times for every active emergency.',
         },
         {
           image: '/images/cards/smartcity-hospital-coordination.jpg',
-          number: '04',
           title: 'Hospital Coordination',
           description: 'Automatic advance notifications to receiving hospitals with patient status and estimated arrival time.',
         },
         {
           image: '/images/cards/amb-driver-tablet.jpg',
-          number: '05',
           title: 'Driver Dashboard',
           description: 'Mobile-first driver interface with navigation, job status updates and direct communication tools.',
         },
         {
           image: '/images/cards/amb-analytics.jpg',
-          number: '06',
           title: 'Operational Analytics',
           description: 'Trip records, response time data and fleet utilization reports to support operational improvement.',
         },
@@ -570,31 +545,26 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/cards/traffic-telemetry.jpg',
-          number: '01',
           title: 'Emergency Vehicle Tracking',
           description: 'Live GPS tracking of all active emergency vehicles visible to traffic control centre operators.',
         },
         {
           image: '/images/hero-traffic.jpg',
-          number: '02',
           title: 'Emergency Route Intelligence',
           description: 'Automated identification of optimal emergency vehicle routes based on live traffic conditions.',
         },
         {
           image: '/images/home-traffic.jpg',
-          number: '03',
           title: 'Traffic Coordination',
           description: 'Structured tools for traffic operators to manage flows and support emergency response in real time.',
         },
         {
           image: '/images/cards/traffic-green-corridor.jpg',
-          number: '04',
           title: 'Green Corridor Support',
           description: 'Coordinate signal priority and corridor clearance to support unobstructed emergency vehicle movement.',
         },
         {
           image: '/images/hero-smart-cities.jpg',
-          number: '05',
           title: 'Live Emergency Map',
           description: 'A real-time operational map showing active incidents, emergency vehicles and route status for all operators.',
         },
@@ -679,31 +649,26 @@ export const pages: PageData[] = [
       cards: [
         {
           image: '/images/cards/police-mobile-alert.jpg',
-          number: '01',
           title: 'Real-Time Incident Alerts',
           description: 'Instant digital alerts for new emergencies with location data, incident type and status updates in real time.',
         },
         {
           image: '/images/cards/police-gis-map.jpg',
-          number: '02',
           title: 'Location Intelligence',
           description: 'Live mapping of active incidents, officer positions and other emergency responders on a shared operational map.',
         },
         {
           image: '/images/cards/smartcity-multi-agency.jpg',
-          number: '03',
           title: 'Responder Coordination',
           description: 'Coordinate police response with ambulance, hospital and traffic management through one connected platform.',
         },
         {
           image: '/images/cards/gov-command-wall.jpg',
-          number: '04',
           title: 'Incident Monitoring',
           description: 'A live dashboard showing all active incidents, assigned resources and real-time status updates for command personnel.',
         },
         {
           image: '/images/cards/police-digital-records.jpg',
-          number: '05',
           title: 'Digital Incident Records',
           description: 'Complete digital documentation for every incident from first alert through to resolution and post-incident review.',
         },

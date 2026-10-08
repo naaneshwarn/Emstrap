@@ -208,7 +208,7 @@ function Hero({ hero }: { hero: PageData['hero'] }) {
 }
 
 // ─── Challenge card ───────────────────────────────────────────────────────────
-// ─── Challenge card (Problem -> Awareness effect) ────────────────────────────
+// ─── Challenge card (Staggered on-scroll reveal + hover interaction) ──────────
 function ChallengeCard({
   image,
   title,
@@ -224,10 +224,10 @@ function ChallengeCard({
 }) {
   return (
     <div
-      className={`challenge-card-entry w-full h-full flex flex-col ${isVisible ? 'is-visible' : ''}`}
-      style={{ transitionDelay: `${(delayIndex % 6) * 80}ms` }}
+      className={`card-entry w-full h-full flex flex-col ${isVisible ? 'is-visible' : ''}`}
+      style={{ transitionDelay: `${(delayIndex % 6) * 75}ms` }}
     >
-      <div className="motion-card-hover group rounded-[8px] overflow-hidden h-full flex flex-col bg-white border border-border-default shadow-xs hover:shadow-md transition-all select-none">
+      <div className="card-hover-box group rounded-[8px] overflow-hidden h-full flex flex-col bg-white border border-border-default shadow-xs select-none">
         <div className="relative aspect-[16/10] bg-surface-light overflow-hidden">
           <img
             src={image}
@@ -236,17 +236,17 @@ function ChallengeCard({
             loading="lazy"
           />
         </div>
-        {/* Problem -> Awareness indicator hairline: draws left to right on reveal */}
+        {/* Subtle accent hairline */}
         <div className="w-full h-[2px] bg-border-light overflow-hidden">
           <div
-            className={`h-full bg-gradient-to-r from-brand-red to-navy-deep/60 transition-all duration-700 ease-out ${
+            className={`h-full bg-brand-red transition-all duration-500 ease-out ${
               isVisible ? 'w-full' : 'w-0'
             }`}
-            style={{ transitionDelay: `${(delayIndex % 6) * 80 + 120}ms` }}
+            style={{ transitionDelay: `${(delayIndex % 6) * 75 + 150}ms` }}
           />
         </div>
-        <div className="p-4 flex-1 flex flex-col">
-          <h3 className="text-[14px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
+        <div className="p-5 flex-1 flex flex-col">
+          <h3 className="text-[15px] font-semibold text-content-primary mb-2 leading-snug">{title}</h3>
           <p className="text-[13px] text-content-secondary leading-[1.6] flex-1">{description}</p>
         </div>
       </div>
@@ -254,17 +254,15 @@ function ChallengeCard({
   );
 }
 
-// ─── Feature card (Solution Rising & Settling effect) ─────────────────────────
+// ─── Feature card (Staggered on-scroll reveal + hover interaction) ────────────
 function FeatureCard({
   image,
-  number,
   title,
   description,
   delayIndex = 0,
   isVisible = true,
 }: {
   image: string;
-  number?: string;
   title: string;
   description: string;
   delayIndex?: number;
@@ -272,10 +270,10 @@ function FeatureCard({
 }) {
   return (
     <div
-      className={`solution-card-entry w-full h-full flex flex-col ${isVisible ? 'is-visible' : ''}`}
-      style={{ transitionDelay: `${(delayIndex % 6) * 80}ms` }}
+      className={`card-entry w-full h-full flex flex-col ${isVisible ? 'is-visible' : ''}`}
+      style={{ transitionDelay: `${(delayIndex % 6) * 75}ms` }}
     >
-      <div className="motion-card-hover group rounded-[8px] overflow-hidden h-full flex flex-col bg-white border border-border-default shadow-xs hover:shadow-md transition-all select-none">
+      <div className="card-hover-box group rounded-[8px] overflow-hidden h-full flex flex-col bg-white border border-border-default shadow-xs select-none">
         <div className="relative aspect-[16/10] bg-surface-light overflow-hidden">
           <img
             src={image}
@@ -284,17 +282,17 @@ function FeatureCard({
             loading="lazy"
           />
         </div>
-        {/* Solution Accent Line: introduces the connected solution */}
+        {/* Solution Accent Line */}
         <div className="w-full h-[2px] bg-border-light overflow-hidden">
           <div
-            className={`h-full bg-gradient-to-r from-blue-accent to-emerald-500 transition-all duration-700 ease-out ${
+            className={`h-full bg-blue-accent transition-all duration-500 ease-out ${
               isVisible ? 'w-full' : 'w-0'
             }`}
-            style={{ transitionDelay: `${(delayIndex % 6) * 80 + 120}ms` }}
+            style={{ transitionDelay: `${(delayIndex % 6) * 75 + 150}ms` }}
           />
         </div>
-        <div className="p-4 flex-1 flex flex-col">
-          <h3 className="text-[14px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
+        <div className="p-5 flex-1 flex flex-col">
+          <h3 className="text-[15px] font-semibold text-content-primary mb-2 leading-snug">{title}</h3>
           <p className="text-[13px] text-content-secondary leading-[1.6] flex-1">{description}</p>
         </div>
       </div>
@@ -302,7 +300,7 @@ function FeatureCard({
   );
 }
 
-// ─── Section header (clean editorial, no large numbers) ───────────────────────
+// ─── Section header ───────────────────────────────────────────────────────────
 function SectionHeader({
   eyebrow,
   heading,
@@ -334,6 +332,8 @@ function BenefitItem({
   iconName,
   title,
   description,
+  delayIndex = 0,
+  isVisible = true,
 }: {
   iconName: string;
   title: string;
@@ -343,17 +343,22 @@ function BenefitItem({
 }) {
   const isEmergency = ['zap', 'shield'].includes(iconName);
   return (
-    <div className="card-hover-box glass-card-interactive group flex flex-col gap-3 p-5 rounded-[8px] h-full w-full select-none">
-      <div
-        className={`w-10 h-10 flex items-center justify-center rounded-[4px] icon-hover-box flex-shrink-0 ${
-          isEmergency ? 'bg-red-pale text-brand-red' : 'bg-surface-light text-blue-accent'
-        }`}
-      >
-        <div className="w-5 h-5">{ICONS[iconName] ?? ICONS.clock}</div>
-      </div>
-      <div className="flex-1 flex flex-col">
-        <h3 className="text-[14px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
-        <p className="text-[13px] text-content-secondary leading-[1.65] flex-1">{description}</p>
+    <div
+      className={`card-entry w-full h-full flex flex-col ${isVisible ? 'is-visible' : ''}`}
+      style={{ transitionDelay: `${(delayIndex % 6) * 75}ms` }}
+    >
+      <div className="card-hover-box group flex flex-col gap-3.5 p-6 rounded-[8px] h-full w-full bg-white border border-border-default shadow-xs select-none">
+        <div
+          className={`w-11 h-11 flex items-center justify-center rounded-[6px] icon-hover-box flex-shrink-0 ${
+            isEmergency ? 'bg-red-pale text-brand-red' : 'bg-surface-light text-blue-accent'
+          }`}
+        >
+          <div className="w-5 h-5">{ICONS[iconName] ?? ICONS.clock}</div>
+        </div>
+        <div className="flex-1 flex flex-col">
+          <h3 className="text-[15px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
+          <p className="text-[13px] text-content-secondary leading-[1.65] flex-1">{description}</p>
+        </div>
       </div>
     </div>
   );
@@ -414,15 +419,11 @@ function EcosystemStep({
 // ─── Section 01: Challenge ────────────────────────────────────────────────────
 function ChallengeSection({ data }: { data: PageData['challenge'] }) {
   const [ref, inView] = useInView({ threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Duplicate cards for seamless continuous flow
-  const marqueeCards = [...data.cards, ...data.cards];
 
   return (
     <section ref={ref} className="bg-white py-20 lg:py-24 border-t border-border-default overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12 lg:gap-16 items-start">
           <div className={`section-reveal ${inView ? 'is-visible' : ''}`}>
             <SectionHeader
               eyebrow="The Challenge"
@@ -432,63 +433,18 @@ function ChallengeSection({ data }: { data: PageData['challenge'] }) {
             />
           </div>
 
-          {/* Continuous Running Cards Marquee in the right column */}
-          <div
-            className="challenge-marquee-container min-w-0 overflow-hidden relative py-3"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-            aria-label="The Challenge continuous operational showcase"
-          >
-            {/* Ambient edge fade masks */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
-
-            <div className="challenge-marquee-track flex">
-              {/* Group 1 */}
-              <div
-                className="challenge-marquee-group flex items-stretch gap-5 pr-5 flex-shrink-0"
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-              >
-                {marqueeCards.map((card, idx) => (
-                  <div
-                    key={`c1-${idx}-${card.title}`}
-                    className="w-[280px] sm:w-[310px] lg:w-[330px] flex-shrink-0 flex"
-                  >
-                    <ChallengeCard
-                      image={card.image}
-                      title={card.title}
-                      description={card.description}
-                      delayIndex={idx}
-                      isVisible={inView}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Group 2 (identical duplicate for seamless infinite loop) */}
-              <div
-                className="challenge-marquee-group flex items-stretch gap-5 pr-5 flex-shrink-0"
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-                aria-hidden="true"
-              >
-                {marqueeCards.map((card, idx) => (
-                  <div
-                    key={`c2-${idx}-${card.title}`}
-                    className="w-[280px] sm:w-[310px] lg:w-[330px] flex-shrink-0 flex"
-                  >
-                    <ChallengeCard
-                      image={card.image}
-                      title={card.title}
-                      description={card.description}
-                      delayIndex={idx}
-                      isVisible={inView}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Responsive Card Grid with Staggered Entrance */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {data.cards.map((card, idx) => (
+              <ChallengeCard
+                key={card.title}
+                image={card.image}
+                title={card.title}
+                description={card.description}
+                delayIndex={idx}
+                isVisible={inView}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -499,15 +455,11 @@ function ChallengeSection({ data }: { data: PageData['challenge'] }) {
 // ─── Section 02: How EMSTRAP Helps ───────────────────────────────────────────
 function HowHelpsSection({ data }: { data: PageData['howHelps'] }) {
   const [ref, inView] = useInView({ threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Duplicate cards for seamless continuous flow
-  const marqueeCards = [...data.cards, ...data.cards];
 
   return (
     <section ref={ref} className="bg-surface-light py-20 lg:py-24 border-t border-border-default overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12 lg:gap-16 items-start">
           <div className={`section-reveal ${inView ? 'is-visible' : ''}`}>
             <SectionHeader
               eyebrow="How EMSTRAP Helps"
@@ -517,63 +469,18 @@ function HowHelpsSection({ data }: { data: PageData['howHelps'] }) {
             />
           </div>
 
-          {/* Continuous Running Cards Marquee in the right column */}
-          <div
-            className="how-helps-marquee-container min-w-0 overflow-hidden relative py-3"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-            aria-label="How EMSTRAP Helps continuous operational showcase"
-          >
-            {/* Ambient edge fade masks */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-surface-light via-surface-light/80 to-transparent z-10" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-surface-light via-surface-light/80 to-transparent z-10" />
-
-            <div className="how-helps-marquee-track flex">
-              {/* Group 1 */}
-              <div
-                className="how-helps-marquee-group flex items-stretch gap-5 pr-5 flex-shrink-0"
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-              >
-                {marqueeCards.map((card, idx) => (
-                  <div
-                    key={`h1-${idx}-${card.title}`}
-                    className="w-[280px] sm:w-[310px] lg:w-[330px] flex-shrink-0 flex"
-                  >
-                    <FeatureCard
-                      image={card.image}
-                      title={card.title}
-                      description={card.description}
-                      delayIndex={idx}
-                      isVisible={inView}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Group 2 (identical duplicate for seamless infinite loop) */}
-              <div
-                className="how-helps-marquee-group flex items-stretch gap-5 pr-5 flex-shrink-0"
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-                aria-hidden="true"
-              >
-                {marqueeCards.map((card, idx) => (
-                  <div
-                    key={`h2-${idx}-${card.title}`}
-                    className="w-[280px] sm:w-[310px] lg:w-[330px] flex-shrink-0 flex"
-                  >
-                    <FeatureCard
-                      image={card.image}
-                      title={card.title}
-                      description={card.description}
-                      delayIndex={idx}
-                      isVisible={inView}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Responsive Card Grid with Staggered Entrance */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {data.cards.map((card, idx) => (
+              <FeatureCard
+                key={card.title}
+                image={card.image}
+                title={card.title}
+                description={card.description}
+                delayIndex={idx}
+                isVisible={inView}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -584,16 +491,12 @@ function HowHelpsSection({ data }: { data: PageData['howHelps'] }) {
 // ─── Section 03: Key Benefits ─────────────────────────────────────────────────
 function BenefitsSection({ data }: { data: PageData['benefits'] }) {
   const [ref, inView] = useInView({ threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Duplicate items to ensure smooth continuous stream across all viewport widths
-  const marqueeItems = [...data.items, ...data.items];
 
   return (
     <section ref={ref} className="bg-white py-20 lg:py-24 border-t border-border-default overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
         {/* Header row */}
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 lg:gap-16 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12 lg:gap-16 mb-12">
           <div className={`section-reveal ${inView ? 'is-visible' : ''}`}>
             <SectionHeader
               eyebrow="Key Benefits"
@@ -607,60 +510,19 @@ function BenefitsSection({ data }: { data: PageData['benefits'] }) {
             <div className="w-full h-px bg-border-default mt-2" />
           </div>
         </div>
-      </div>
 
-      {/* Full-width continuous horizontal running cards marquee */}
-      <div
-        className="benefits-marquee-container relative overflow-hidden py-3"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-        aria-label="Key Benefits Continuous Marquee"
-      >
-        {/* Ambient fade masks on left and right for smooth edge transitions */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 lg:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
-
-        <div className="benefits-marquee-track flex">
-          {/* Group 1 */}
-          <div
-            className="benefits-marquee-group flex items-stretch gap-6 pr-6 flex-shrink-0"
-            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-          >
-            {marqueeItems.map((item, idx) => (
-              <div
-                key={`b1-${idx}-${item.title}`}
-                className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 flex"
-              >
-                <BenefitItem
-                  iconName={item.iconName}
-                  title={item.title}
-                  description={item.description}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Group 2 (identical duplicate for seamless infinite loop) */}
-          <div
-            className="benefits-marquee-group flex items-stretch gap-6 pr-6 flex-shrink-0"
-            style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-            aria-hidden="true"
-          >
-            {marqueeItems.map((item, idx) => (
-              <div
-                key={`b2-${idx}-${item.title}`}
-                className="w-[280px] sm:w-[320px] md:w-[340px] flex-shrink-0 flex"
-              >
-                <BenefitItem
-                  iconName={item.iconName}
-                  title={item.title}
-                  description={item.description}
-                />
-              </div>
-            ))}
-          </div>
+        {/* Responsive Benefits Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.items.map((item, idx) => (
+            <BenefitItem
+              key={item.title}
+              iconName={item.iconName}
+              title={item.title}
+              description={item.description}
+              delayIndex={idx}
+              isVisible={inView}
+            />
+          ))}
         </div>
       </div>
     </section>

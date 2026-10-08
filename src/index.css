@@ -52,11 +52,11 @@ body {
    EMSTRAP HIGH-IMPACT ENTERPRISE ANIMATION SYSTEM
    ═══════════════════════════════════════════════════════════════════════════════ */
 
-/* ─── 1. Hero Animations (Noticeable, Clean Staggered Sequence) ───────────────── */
-@keyframes heroEyebrowIn {
+/* ─── 1. Hero Animations (Subtle, Clean Staggered Sequence) ──────────────────── */
+@keyframes heroTextIn {
   0% {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(16px);
   }
   100% {
     opacity: 1;
@@ -64,43 +64,10 @@ body {
   }
 }
 
-@keyframes heroHeadingIn {
+@keyframes heroImageFade {
   0% {
-    opacity: 0;
-    transform: translateY(35px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroDescIn {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroBtnIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroImageZoom {
-  0% {
-    opacity: 0.75;
-    transform: scale(1.08);
+    opacity: 0.85;
+    transform: scale(1.02);
   }
   100% {
     opacity: 1;
@@ -110,31 +77,31 @@ body {
 
 .animate-hero-eyebrow {
   opacity: 0;
-  animation: heroEyebrowIn 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: heroTextIn 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-hero-heading {
   opacity: 0;
-  animation: heroHeadingIn 700ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroTextIn 500ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-hero-desc {
   opacity: 0;
-  animation: heroDescIn 600ms 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroTextIn 450ms 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-hero-btn {
   opacity: 0;
-  animation: heroBtnIn 500ms 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroTextIn 400ms 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-hero-tags {
   opacity: 0;
-  animation: heroBtnIn 500ms 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroTextIn 400ms 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-hero-image {
-  animation: heroImageZoom 1200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: heroImageFade 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── 2. Scroll Reveal: Stronger Section Entrance (translateY 60px -> 0, 700ms) ─ */
@@ -193,42 +160,42 @@ body {
   transform: translateY(0);
 }
 
-/* ─── 4. Cards Entrance (translateY 45px scale(0.97) -> translateY(0) scale(1)) ── */
+/* ─── 4. Cards Entrance (translateY 24px -> translateY 0, 350ms) ─────────────── */
 .card-entry {
   opacity: 0;
-  transform: translateY(45px) scale(0.97);
-  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .card-entry.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-/* ─── 5. Card Interactive Hover (translateY -8px, Elevated Shadow, 350ms) ──────── */
+/* ─── 5. Card Interactive Hover (translateY -5px, subtle elevation, 300ms) ────── */
 .card-hover-box {
-  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, box-shadow;
 }
 
 .card-hover-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 35px -8px rgba(7, 22, 43, 0.14), 0 8px 16px -4px rgba(7, 22, 43, 0.07);
-  border-color: rgba(7, 22, 43, 0.28);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px -6px rgba(7, 22, 43, 0.12), 0 4px 10px -2px rgba(7, 22, 43, 0.05);
+  border-color: rgba(7, 22, 43, 0.22);
 }
 
-/* ─── 6. Card Image Zoom on Hover (scale 1.06, 500ms ease) ─────────────────────── */
+/* ─── 6. Card Image Zoom on Hover (subtle scale 1.04, 350ms ease) ─────────────── */
 .card-zoom-img {
-  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
 .card-hover-box:hover .card-zoom-img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 /* ─── 7. Card Icon Animation (scale 1.12, rotate 3deg) ────────────────────────── */
@@ -436,28 +403,19 @@ body {
   transform: scale(0.95);
 }
 
-/* ─── 14. Floating Card Banner Animation System ────────────────────────────────── */
-@keyframes cardFloatDrift {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
+/* ─── 14. Floating Card Banner System ────────────────────────────────────────── */
 .banner-floating {
-  animation: cardFloatDrift 4.6s ease-in-out infinite;
+  position: relative;
 }
 
 .banner-card-slide-in {
-  animation: bannerSlideIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: bannerSlideIn 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes bannerSlideIn {
   0% {
     opacity: 0;
-    transform: translateX(60px);
+    transform: translateX(16px);
   }
   100% {
     opacity: 1;
@@ -465,19 +423,8 @@ body {
   }
 }
 
-@keyframes bannerSlideOut {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-60px);
-  }
-}
-
-.banner-card-slide-out {
-  animation: bannerSlideOut 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
 @keyframes pulseGlow {
@@ -487,99 +434,7 @@ body {
   }
   50% {
     opacity: 1;
-    transform: scale(1.15);
-  }
-}
-
-.pulse-glow {
-  animation: pulseGlow 2.5s infinite ease-in-out;
-}
-
-/* ─── 14. Key Benefits Infinite Horizontal Marquee ─────────────────────────────── */
-.benefits-marquee-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.benefits-marquee-track {
-  display: flex;
-  width: max-content;
-  user-select: none;
-}
-
-.benefits-marquee-group {
-  display: flex;
-  align-items: stretch;
-  flex-shrink: 0;
-  animation: benefitsMarquee 45s linear infinite;
-  will-change: transform;
-}
-
-.benefits-marquee-container:hover .benefits-marquee-group {
-  animation-play-state: paused;
-}
-
-@keyframes benefitsMarquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* ─── 15. Challenge & How Helps Infinite Horizontal Marquees ──────────────────── */
-.challenge-marquee-container,
-.how-helps-marquee-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.challenge-marquee-track,
-.how-helps-marquee-track {
-  display: flex;
-  width: max-content;
-  user-select: none;
-}
-
-.challenge-marquee-group {
-  display: flex;
-  align-items: stretch;
-  flex-shrink: 0;
-  animation: challengeMarquee 40s linear infinite;
-  will-change: transform;
-}
-
-.how-helps-marquee-group {
-  display: flex;
-  align-items: stretch;
-  flex-shrink: 0;
-  animation: howHelpsMarquee 42s linear infinite;
-  will-change: transform;
-}
-
-.challenge-marquee-container:hover .challenge-marquee-group,
-.how-helps-marquee-container:hover .how-helps-marquee-group {
-  animation-play-state: paused;
-}
-
-@keyframes challengeMarquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-@keyframes howHelpsMarquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-100%, 0, 0);
+    transform: scale(1.1);
   }
 }
 

@@ -2,10 +2,10 @@ import { Link } from 'react-router';
 
 function EmstrapLogoWhite() {
   return (
-    <Link to="/" className="inline-flex items-center bg-white px-3 py-1.5 rounded-[4px] shadow-xs hover:opacity-95 transition-opacity">
+    <Link to="/" className="inline-flex items-center bg-white px-3 py-1.5 rounded-[4px] shadow-xs hover:opacity-95 transition-opacity" aria-label="EMSTRAP">
       <img
         src="/assets/emstrap-logo.png"
-        alt="EMSTRAP Emergency Response"
+        alt="EMSTRAP"
         className="h-8 md:h-9 w-auto object-contain"
       />
     </Link>
@@ -110,8 +110,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+919880882476" className="footer-link text-[13px] text-[#9AAEC4]">
-                  +91 9880882476
+                <a href="tel:9880882476" className="footer-link text-[13px] text-[#9AAEC4]">
+                  9880882476
                 </a>
               </li>
               <li className="text-[13px] text-[#9AAEC4]">

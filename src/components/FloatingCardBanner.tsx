@@ -10,10 +10,10 @@ export interface BannerCard {
   eyebrow: string;
   title: string;
   description: string;
-  metricValue: string;
-  metricLabel: string;
-  actionText: string;
-  actionLink: string;
+  metricValue?: string;
+  metricLabel?: string;
+  actionText?: string;
+  actionLink?: string;
 }
 
 // ─── Cards Data per Page ──────────────────────────────────────────────────────
@@ -42,10 +42,6 @@ const BANNER_DATA: Record<string, BannerCard[]> = {
       eyebrow: 'DEDICATED EMS INTEGRATION',
       title: 'Direct Tertiary Hospital & Ambulance Routing',
       description: 'Pre-designated trauma hospital routing with continuous vitals telemetry transmission and pre-arrival notification for severe industrial or office medical emergencies.',
-      metricValue: '100%',
-      metricLabel: 'Pre-Arrival ER Triage Sync',
-      actionText: 'View Medical Protocol',
-      actionLink: '/ambulance-providers',
     },
     {
       id: 'corp-3',
@@ -526,33 +522,62 @@ export default function FloatingCardBanner({
                   </div>
 
                   {/* Metrics and Action Bar */}
-                  <div className="pt-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    {/* Metric Card */}
-                    <div className="bg-surface-light px-4 py-2.5 rounded-[10px] border border-border-default shadow-xs inline-flex items-center gap-3">
-                      <div className="text-[20px] font-extrabold text-content-primary tracking-tight">
-                        {activeCard.metricValue}
-                      </div>
-                      <div className="h-6 w-px bg-border-default" />
-                      <div className="text-[11px] font-medium uppercase tracking-wider text-content-secondary leading-tight">
-                        {activeCard.metricLabel}
-                      </div>
-                    </div>
+                  {(activeCard.metricValue || activeCard.actionText) && (
+                    <div className="pt-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      {/* Metric Card */}
+                      {activeCard.metricValue && activeCard.metricLabel ? (
+                        <div className="bg-surface-light px-4 py-2.5 rounded-[10px] border border-border-default shadow-xs inline-flex items-center gap-3">
+                          <div className="text-[20px] font-extrabold text-content-primary tracking-tight">
+                            {activeCard.metricValue}
+                          </div>
+                          <div className="h-6 w-px bg-border-default" />
+                          <div className="text-[11px] font-medium uppercase tracking-wider text-content-secondary leading-tight">
+                            {activeCard.metricLabel}
+                          </div>
+                        </div>
+                      ) : <div />}
 
-                    {/* Action link */}
-                    <Link
-                      to={activeCard.actionLink}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-red text-white text-[13px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth whitespace-nowrap self-start sm:self-auto"
-                    >
-                      {activeCard.actionText}
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 7h8M7 3l4 4-4 4" />
-                      </svg>
-                    </Link>
-                  </div>
+                      {/* Action link */}
+                      {activeCard.actionText && activeCard.actionLink && (
+                        <Link
+                          to={activeCard.actionLink}
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-red text-white text-[13px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth whitespace-nowrap self-start sm:self-auto"
+                        >
+                          {activeCard.actionText}
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 7h8M7 3l4 4-4 4" />
+                          </svg>
+                        </Link>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Side Navigation Arrow Buttons */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous slide"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-content-primary hover:text-brand-red border border-border-default shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-red"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next slide"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-white hover:bg-slate-50 text-content-primary hover:text-brand-red border border-border-default shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-red"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
 
         {/* ─── Dots / Bullet Indicator ────────────────────────────────────────── */}

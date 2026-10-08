@@ -20,10 +20,10 @@ function ChevronDown() {
 
 function EmstrapLogo() {
   return (
-    <Link to="/" className="flex items-center flex-shrink-0">
+    <Link to="/" className="flex items-center flex-shrink-0" aria-label="EMSTRAP">
       <img
         src="/assets/emstrap-logo-transparent.png"
-        alt="EMSTRAP Emergency Response"
+        alt="EMSTRAP"
         className="h-10 md:h-11 w-auto object-contain"
       />
     </Link>
