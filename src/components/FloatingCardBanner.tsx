@@ -29,8 +29,8 @@ const BANNER_DATA: Record<string, BannerCard[]> = {
       title: 'Coordinated Campus Emergency & Evacuation Mesh',
       description: 'Empower trained floor marshals and medical ERT teams with instant silent alerts, real-time muster roll headcount, and synchronized hospital EMS dispatch during critical facility incidents.',
       metricValue: '< 90s',
-      metricLabel: 'Campus ERT Deployment',
-      actionText: 'Explore Shield',
+      metricLabel: 'CAMPUS EMT MOBILIZATION',
+      actionText: 'Corporate Shield',
       actionLink: '#solutions',
     },
     {

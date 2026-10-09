@@ -155,52 +155,111 @@ function Hero({ hero }: { hero: PageData['hero'] }) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-16 py-20 lg:py-24">
-        <div className="max-w-[640px]">
-          {/* Eyebrow */}
-          <div className="text-[12px] font-semibold tracking-[0.15em] uppercase text-white/60 mb-5 animate-hero-eyebrow">
-            {hero.eyebrow}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-16 py-16 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column */}
+          <div className="lg:col-span-7 max-w-[640px]">
+            {/* Eyebrow */}
+            <div className="text-[12px] font-semibold tracking-[0.15em] uppercase text-white/60 mb-5 animate-hero-eyebrow">
+              {hero.eyebrow}
+            </div>
+
+            {/* Title */}
+            <h1 className="text-[40px] sm:text-[52px] lg:text-[60px] font-bold text-white leading-[1.08] tracking-tight mb-6 animate-hero-heading">
+              {renderTitle(hero.titleLines, hero.highlight)}
+            </h1>
+
+            {/* Description */}
+            <p className="text-[17px] lg:text-[18px] text-white/75 leading-relaxed mb-8 max-w-[520px] animate-hero-desc">
+              {hero.description}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3 mb-8 animate-hero-btn">
+              <a
+                href="#"
+                className="inline-flex items-center px-6 py-3 bg-brand-red text-white text-[14px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth"
+              >
+                {hero.primaryCta}
+              </a>
+              <a
+                href="#"
+                className="inline-flex items-center px-6 py-3 bg-transparent border border-white/40 text-white text-[14px] font-semibold rounded-[4px] hover:bg-white/10 btn-outline-smooth"
+              >
+                {hero.secondaryCta}
+              </a>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 animate-hero-tags">
+              {hero.tags.map((tag, i) => (
+                <React.Fragment key={tag}>
+                  {i > 0 && (
+                    <span className="text-white/25 text-[13px] hidden sm:inline">|</span>
+                  )}
+                  <a href="#" className="text-[13px] text-white/55 hover:text-white/80 transition-colors">
+                    {tag}
+                  </a>
+                </React.Fragment>
+              ))}
+            </div>
           </div>
 
-          {/* Title */}
-          <h1 className="text-[40px] sm:text-[52px] lg:text-[60px] font-bold text-white leading-[1.08] tracking-tight mb-6 animate-hero-heading">
-            {renderTitle(hero.titleLines, hero.highlight)}
-          </h1>
+          {/* Right Column: Hero Metric & Action Card */}
+          {hero.heroCard && (
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="w-full max-w-[420px] bg-slate-900/80 backdrop-blur-md rounded-[12px] border border-white/15 p-6 sm:p-7 shadow-2xl animate-hero-card">
+                {/* Status Badge */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/90">
+                      {hero.heroCard.badge}
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-semibold tracking-wider text-white/50 uppercase">
+                    LIVE RESPONSE
+                  </span>
+                </div>
 
-          {/* Description */}
-          <p className="text-[17px] lg:text-[18px] text-white/75 leading-relaxed mb-8 max-w-[520px] animate-hero-desc">
-            {hero.description}
-          </p>
+                {/* Metric Display */}
+                <div className="bg-slate-950/70 rounded-[10px] border border-white/10 p-5 mb-5">
+                  <div className="text-[38px] sm:text-[44px] font-extrabold text-white tracking-tight leading-none mb-2">
+                    {hero.heroCard.metricValue}
+                  </div>
+                  <div className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] uppercase text-white/85">
+                    {hero.heroCard.metricLabel}
+                  </div>
+                </div>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-3 mb-8 animate-hero-btn">
-            <a
-              href="#"
-              className="inline-flex items-center px-6 py-3 bg-brand-red text-white text-[14px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth"
-            >
-              {hero.primaryCta}
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center px-6 py-3 bg-transparent border border-white/40 text-white text-[14px] font-semibold rounded-[4px] hover:bg-white/10 btn-outline-smooth"
-            >
-              {hero.secondaryCta}
-            </a>
-          </div>
+                {/* Card Description */}
+                <p className="text-[13.5px] sm:text-[14px] text-white/75 leading-relaxed mb-6">
+                  {hero.heroCard.description}
+                </p>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5 animate-hero-tags">
-            {hero.tags.map((tag, i) => (
-              <React.Fragment key={tag}>
-                {i > 0 && (
-                  <span className="text-white/25 text-[13px] hidden sm:inline">|</span>
-                )}
-                <a href="#" className="text-[13px] text-white/55 hover:text-white/80 transition-colors">
-                  {tag}
+                {/* Red CTA Button with Arrow */}
+                <a
+                  href={hero.heroCard.actionLink || '#solutions'}
+                  className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-brand-red text-white text-[14px] font-semibold rounded-[6px] hover:bg-[#CC1218] transition-all duration-200 shadow-md group"
+                >
+                  <span>{hero.heroCard.actionText}</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="transform transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
                 </a>
-              </React.Fragment>
-            ))}
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -371,7 +430,7 @@ function EcosystemStep({
   total,
   isVisible = true,
 }: {
-  step: { image: string; title: string; description: string };
+  step: { image: string; title: string; description: string; alt?: string };
   index: number;
   total: number;
   isVisible?: boolean;
@@ -385,10 +444,10 @@ function EcosystemStep({
     >
       {/* Step content */}
       <div className="group flex flex-col items-center text-center w-[130px] sm:w-[150px]">
-        <div className="w-[72px] h-[72px] rounded-full overflow-hidden border-2 border-border-default bg-surface-light mb-3 flex-shrink-0 step-photo-hover">
+        <div className="w-[72px] h-[72px] rounded-full overflow-hidden border-2 border-border-default bg-surface-light mb-3 flex-shrink-0 step-photo-hover shadow-xs">
           <img
             src={step.image}
-            alt={step.title}
+            alt={step.alt || step.title}
             className="w-full h-full object-cover card-zoom-img"
             loading="lazy"
           />
@@ -611,7 +670,12 @@ export default function PageTemplate({ data }: { data: PageData }) {
     <>
       <Hero hero={data.hero} />
       <ChallengeSection data={data.challenge} />
-      <FloatingCardBanner pageSlug={data.slug} />
+      <FloatingCardBanner
+        pageSlug={data.slug}
+        showBadge={true}
+        showMetrics={true}
+        showAction={true}
+      />
       <HowHelpsSection data={data.howHelps} />
       <BenefitsSection data={data.benefits} />
       <EcosystemSection data={data.ecosystem} />

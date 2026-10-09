@@ -14,6 +14,16 @@ export interface EcosystemStep {
   image: string;
   title: string;
   description: string;
+  alt?: string;
+}
+
+export interface HeroCardData {
+  badge: string;
+  metricValue: string;
+  metricLabel: string;
+  description: string;
+  actionText: string;
+  actionLink?: string;
 }
 
 export interface PageData {
@@ -27,6 +37,7 @@ export interface PageData {
     secondaryCta: string;
     tags: string[];
     backgroundImage: string;
+    heroCard?: HeroCardData;
   };
   challenge: {
     heading: string;
@@ -63,6 +74,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Corporate Demo',
       tags: ['Employee Safety', 'Emergency Response', 'Fire Safety', 'Safety Management'],
       backgroundImage: '/images/hero-corporate.jpg',
+      heroCard: {
+        badge: 'ENTERPRISE READY',
+        metricValue: '< 90s',
+        metricLabel: 'CAMPUS EMT MOBILIZATION',
+        description: 'Instant floor marshal coordination and automated EMS dispatch across corporate campuses.',
+        actionText: 'Corporate Shield',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Modern cities face complex emergency challenges.',
@@ -152,12 +171,42 @@ export const pages: PageData[] = [
       heading: 'From preparedness to response.',
       subheading: 'A connected safety cycle.',
       steps: [
-        { image: '/images/ecosystem/eco-planning.jpg', title: 'Safety Planning', description: 'Policies, protocols and responsibilities defined.' },
-        { image: '/images/ecosystem/eco-training.jpg', title: 'Employee Training', description: 'Staff trained through digital programs.' },
-        { image: '/images/ecosystem/eco-drill.jpg', title: 'Mock Drills', description: 'Simulations test readiness and identify gaps.' },
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Emergency Trigger', description: 'SOS activated or automated alert fired.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Response & Assistance', description: 'Coordinated internal and external response.' },
-        { image: '/images/ecosystem/eco-analytics.jpg', title: 'Reporting & Improvement', description: 'Digital records enable continuous improvement.' },
+        {
+          image: '/images/ecosystem/eco-planning.jpg',
+          title: 'Safety Planning',
+          description: 'Policies, protocols and responsibilities defined.',
+          alt: 'Workplace safety inspection and evacuation plan review by safety professionals',
+        },
+        {
+          image: '/images/ecosystem/eco-training.jpg',
+          title: 'Employee Training',
+          description: 'Staff trained through digital programs.',
+          alt: 'Employees attending a real workplace safety training session lecture',
+        },
+        {
+          image: '/images/ecosystem/eco-drill.jpg',
+          title: 'Mock Drills',
+          description: 'Simulations test readiness and identify gaps.',
+          alt: 'Person using fire extinguisher during emergency evacuation fire drill practice',
+        },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Emergency Trigger',
+          description: 'SOS activated or automated alert fired.',
+          alt: 'Person activating emergency alert on a smartphone with SOS alert',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Response & Assistance',
+          description: 'Coordinated internal and external response.',
+          alt: 'Emergency responders and trained first-aid medical personnel assisting patient',
+        },
+        {
+          image: '/images/ecosystem/eco-analytics.jpg',
+          title: 'Reporting & Improvement',
+          description: 'Digital records enable continuous improvement.',
+          alt: 'Safety officer reviewing incident reports and workplace safety analytics on computer',
+        },
       ],
     },
   },
@@ -174,6 +223,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Demo',
       tags: ['Citizens', 'Ambulances', 'Hospitals', 'Police', 'Traffic Management', 'Emergency Control Centres'],
       backgroundImage: '/images/hero-smart-cities.jpg',
+      heroCard: {
+        badge: 'CITY COMMAND',
+        metricValue: '0-Lag',
+        metricLabel: 'TRI-SERVICE SYNC',
+        description: 'Synchronized CAD layer connecting municipal 112/108 centers, police patrols, and traffic corridors.',
+        actionText: 'Smart Cities Command',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Modern cities face complex emergency challenges.',
@@ -263,12 +320,42 @@ export const pages: PageData[] = [
       heading: 'From citizen to resolution.',
       subheading: 'A connected city emergency journey.',
       steps: [
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Citizen Request', description: 'Emergency activated by citizen.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Ambulance Dispatch', description: 'Nearest unit assigned and en route.' },
-        { image: '/images/ecosystem/eco-police.jpg', title: 'Police Notified', description: 'Incident alert shared with police.' },
-        { image: '/images/ecosystem/eco-traffic.jpg', title: 'Traffic Coordinated', description: 'Route cleared for emergency passage.' },
-        { image: '/images/ecosystem/eco-hospital.jpg', title: 'Hospital Prepared', description: 'Medical team notified in advance.' },
-        { image: '/images/ecosystem/eco-resolution.jpg', title: 'Incident Resolved', description: 'Full city response cycle complete.' },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Citizen Request',
+          description: 'Emergency activated by citizen.',
+          alt: 'Citizen activating emergency trigger alert on smartphone',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Ambulance Dispatch',
+          description: 'Nearest unit assigned and en route.',
+          alt: 'Emergency ambulance dispatched with responders assisting patient',
+        },
+        {
+          image: '/images/ecosystem/eco-police.jpg',
+          title: 'Police Notified',
+          description: 'Incident alert shared with police.',
+          alt: 'Uniformed police officer dispatched to scene',
+        },
+        {
+          image: '/images/ecosystem/eco-traffic.jpg',
+          title: 'Traffic Coordinated',
+          description: 'Route cleared for emergency passage.',
+          alt: 'Traffic management control clearing route for emergency vehicles',
+        },
+        {
+          image: '/images/ecosystem/eco-hospital.jpg',
+          title: 'Hospital Prepared',
+          description: 'Medical team notified in advance.',
+          alt: 'Hospital emergency department preparing for patient arrival',
+        },
+        {
+          image: '/images/ecosystem/eco-resolution.jpg',
+          title: 'Incident Resolved',
+          description: 'Full city response cycle complete.',
+          alt: 'Incident successfully resolved and logged in city command system',
+        },
       ],
     },
   },
@@ -285,6 +372,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Demo',
       tags: ['Departments', 'Integrated Response', 'Public Safety', 'Scalable Infrastructure'],
       backgroundImage: '/images/hero-government.jpg',
+      heroCard: {
+        badge: 'GOV SECURE',
+        metricValue: '< 3 min',
+        metricLabel: 'INTER-AGENCY COORDINATION',
+        description: 'Inter-agency command mesh connecting police, disaster response, and health administrations.',
+        actionText: 'Government Mesh',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Government emergency systems involve multiple moving parts.',
@@ -374,12 +469,42 @@ export const pages: PageData[] = [
       heading: 'Towards safer communities and stronger governance.',
       subheading: 'A coordinated public emergency lifecycle.',
       steps: [
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Incident Report', description: 'Public emergency reported.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Multi-Agency Response', description: 'All agencies simultaneously notified.' },
-        { image: '/images/ecosystem/eco-analytics.jpg', title: 'Real-Time Monitoring', description: 'Command centre tracks all responders.' },
-        { image: '/images/ecosystem/eco-police.jpg', title: 'On-Ground Action', description: 'Coordinated field response delivered.' },
-        { image: '/images/ecosystem/eco-hospital.jpg', title: 'Incident Resolved', description: 'Emergency closed and recorded.' },
-        { image: '/images/ecosystem/eco-resolution.jpg', title: 'Safer Communities', description: 'Data drives future improvement.' },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Incident Report',
+          description: 'Public emergency reported.',
+          alt: 'Emergency reported on mobile alert system',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Multi-Agency Response',
+          description: 'All agencies simultaneously notified.',
+          alt: 'Emergency responders deployed for coordinated assistance',
+        },
+        {
+          image: '/images/ecosystem/eco-analytics.jpg',
+          title: 'Real-Time Monitoring',
+          description: 'Command centre tracks all responders.',
+          alt: 'Command center safety officer monitoring emergency response and analytics',
+        },
+        {
+          image: '/images/ecosystem/eco-police.jpg',
+          title: 'On-Ground Action',
+          description: 'Coordinated field response delivered.',
+          alt: 'Police officers and field responders delivering on-ground action',
+        },
+        {
+          image: '/images/ecosystem/eco-hospital.jpg',
+          title: 'Incident Resolved',
+          description: 'Emergency closed and recorded.',
+          alt: 'Emergency medical care completed and case closed',
+        },
+        {
+          image: '/images/ecosystem/eco-resolution.jpg',
+          title: 'Safer Communities',
+          description: 'Data drives future improvement.',
+          alt: 'Incident data and reporting driving safer communities',
+        },
       ],
     },
   },
@@ -396,6 +521,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Demo',
       tags: ['Ambulance Providers', 'Hospitals', 'Healthcare Networks'],
       backgroundImage: '/images/hero-ambulance.jpg',
+      heroCard: {
+        badge: 'LIVE DISPATCH',
+        metricValue: '< 6 min',
+        metricLabel: 'DYNAMIC EMS ETA',
+        description: 'Predictive computer-aided ambulance dispatch with turn-by-turn routing and ER hospital pre-alert.',
+        actionText: 'Ambulance Fleet',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Ambulance operations face real-world challenges every day.',
@@ -485,12 +618,42 @@ export const pages: PageData[] = [
       heading: 'From request to hospital.',
       subheading: 'A unified ambulance journey.',
       steps: [
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Emergency Request', description: 'Incident reported and received.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Dispatch & Assignment', description: 'Nearest ambulance assigned.' },
-        { image: '/images/ecosystem/eco-traffic.jpg', title: 'En Route', description: 'Ambulance navigating to scene.' },
-        { image: '/images/ecosystem/eco-drill.jpg', title: 'Patient Pickup', description: 'Patient assessed and secured.' },
-        { image: '/images/ecosystem/eco-hospital.jpg', title: 'Hospital Coordination', description: 'Medical team pre-notified.' },
-        { image: '/images/ecosystem/eco-resolution.jpg', title: 'Patient Arrival', description: 'Handover completed, records filed.' },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Emergency Request',
+          description: 'Incident reported and received.',
+          alt: 'Emergency medical request activated on smartphone',
+        },
+        {
+          image: '/images/ecosystem/eco-analytics.jpg',
+          title: 'Dispatch & Assignment',
+          description: 'Nearest ambulance assigned.',
+          alt: 'Operations dispatcher assigning nearest ambulance at computer console',
+        },
+        {
+          image: '/images/ecosystem/eco-traffic.jpg',
+          title: 'En Route',
+          description: 'Ambulance navigating to scene.',
+          alt: 'Ambulance navigating traffic corridor toward emergency scene',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Patient Pickup',
+          description: 'Patient assessed and secured.',
+          alt: 'Paramedics and medical responders assisting patient on stretcher',
+        },
+        {
+          image: '/images/ecosystem/eco-hospital.jpg',
+          title: 'Hospital Coordination',
+          description: 'Medical team pre-notified.',
+          alt: 'Hospital trauma team pre-notified with vitals',
+        },
+        {
+          image: '/images/ecosystem/eco-resolution.jpg',
+          title: 'Patient Arrival',
+          description: 'Handover completed, records filed.',
+          alt: 'Patient arrival at emergency department and digital records filed',
+        },
       ],
     },
   },
@@ -507,6 +670,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Demo',
       tags: ['Traffic Control Centers', 'Smart Cities', 'Emergency Responders', 'Connected Road Networks'],
       backgroundImage: '/images/hero-traffic.jpg',
+      heroCard: {
+        badge: 'GREEN CORRIDOR',
+        metricValue: '42%',
+        metricLabel: 'FASTER TRANSIT CLEARANCE',
+        description: 'Automated green-wave signal preemption for emergency transit through dense urban intersections.',
+        actionText: 'Traffic Solutions',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Traffic management faces real-world emergency challenges.',
@@ -585,11 +756,42 @@ export const pages: PageData[] = [
       heading: 'From emergency activation to destination.',
       subheading: 'A coordinated response journey.',
       steps: [
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Emergency Activated', description: 'Incident reported, dispatch triggered.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Ambulance En Route', description: 'Unit assigned and moving.' },
-        { image: '/images/ecosystem/eco-traffic.jpg', title: 'Traffic Coordination', description: 'Operator alerted, route identified.' },
-        { image: '/images/ecosystem/eco-drill.jpg', title: 'Green Corridor', description: 'Signal priority and clearance activated.' },
-        { image: '/images/ecosystem/eco-resolution.jpg', title: 'Destination Reached', description: 'Ambulance arrives at scene or hospital.' },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Emergency Activated',
+          description: 'Incident reported, dispatch triggered.',
+          alt: 'Emergency alert activated triggering transit clearance',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Ambulance En Route',
+          description: 'Unit assigned and moving.',
+          alt: 'Ambulance unit en route to incident destination',
+        },
+        {
+          image: '/images/ecosystem/eco-traffic.jpg',
+          title: 'Traffic Coordination',
+          description: 'Operator alerted, route identified.',
+          alt: 'Traffic control room coordinating emergency route',
+        },
+        {
+          image: '/images/ecosystem/eco-analytics.jpg',
+          title: 'Green Corridor',
+          description: 'Signal priority and clearance activated.',
+          alt: 'Traffic controller activating green corridor signal priority',
+        },
+        {
+          image: '/images/ecosystem/eco-police.jpg',
+          title: 'Junction Clearance',
+          description: 'Traffic personnel facilitate clear passage.',
+          alt: 'Traffic officers clearing intersections for emergency passage',
+        },
+        {
+          image: '/images/ecosystem/eco-resolution.jpg',
+          title: 'Destination Reached',
+          description: 'Ambulance arrives at scene or hospital.',
+          alt: 'Emergency vehicle reaches hospital safely without delays',
+        },
       ],
     },
   },
@@ -606,6 +808,14 @@ export const pages: PageData[] = [
       secondaryCta: 'Request a Demo',
       tags: ['Ambulance Services', 'Hospitals', 'Traffic Authorities', 'Emergency Control Rooms'],
       backgroundImage: '/images/hero-police.jpg',
+      heroCard: {
+        badge: 'POLICE DISPATCH',
+        metricValue: '< 2 min',
+        metricLabel: 'PCR UNIT MOBILIZATION',
+        description: 'Instant incident alert routing to nearest patrol units and unified multi-responder map sync.',
+        actionText: 'Police Command',
+        actionLink: '#solutions',
+      },
     },
     challenge: {
       heading: 'Police departments face critical operational challenges.',
@@ -690,12 +900,42 @@ export const pages: PageData[] = [
       heading: 'From incident to resolution.',
       subheading: 'All responders connected.',
       steps: [
-        { image: '/images/ecosystem/eco-trigger.jpg', title: 'Incident Report', description: 'Emergency reported and logged.' },
-        { image: '/images/ecosystem/eco-police.jpg', title: 'Police Department', description: 'Officers alerted and dispatched.' },
-        { image: '/images/ecosystem/eco-response.jpg', title: 'Ambulance Services', description: 'Medical response coordinated.' },
-        { image: '/images/ecosystem/eco-traffic.jpg', title: 'Traffic Authorities', description: 'Route support activated.' },
-        { image: '/images/ecosystem/eco-hospital.jpg', title: 'Hospitals', description: 'Medical teams pre-notified.' },
-        { image: '/images/ecosystem/eco-resolution.jpg', title: 'Incident Resolution', description: 'All responders stand down, records filed.' },
+        {
+          image: '/images/ecosystem/eco-trigger.jpg',
+          title: 'Incident Report',
+          description: 'Emergency reported and logged.',
+          alt: 'Emergency reported and logged into police dispatch system',
+        },
+        {
+          image: '/images/ecosystem/eco-police.jpg',
+          title: 'Police Department',
+          description: 'Officers alerted and dispatched.',
+          alt: 'Police officer alerted and dispatched to scene',
+        },
+        {
+          image: '/images/ecosystem/eco-response.jpg',
+          title: 'Ambulance Services',
+          description: 'Medical response coordinated.',
+          alt: 'Ambulance medical response coordinated simultaneously',
+        },
+        {
+          image: '/images/ecosystem/eco-traffic.jpg',
+          title: 'Traffic Authorities',
+          description: 'Route support activated.',
+          alt: 'Traffic authorities clearing route and securing perimeter',
+        },
+        {
+          image: '/images/ecosystem/eco-hospital.jpg',
+          title: 'Hospitals',
+          description: 'Medical teams pre-notified.',
+          alt: 'Hospital emergency teams pre-notified for incoming casualties',
+        },
+        {
+          image: '/images/ecosystem/eco-resolution.jpg',
+          title: 'Incident Resolution',
+          description: 'All responders stand down, records filed.',
+          alt: 'Incident resolved with comprehensive digital records filed',
+        },
       ],
     },
   },
