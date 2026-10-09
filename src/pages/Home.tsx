@@ -154,15 +154,9 @@ export default function Home() {
                     <h3 className="text-[16px] font-bold text-content-primary mb-2 leading-snug">
                       {audience.title}
                     </h3>
-                    <p className="text-[13px] text-content-secondary leading-[1.6] mb-4 flex-1">
+                    <p className="text-[13px] text-content-secondary leading-[1.6]">
                       {audience.description}
                     </p>
-                    <div className="flex items-center gap-1.5 text-[13px] font-semibold text-blue-accent group-hover:gap-2.5 transition-all">
-                      Learn more
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-1">
-                        <path d="M2 7h10M8 3l4 4-4 4" />
-                      </svg>
-                    </div>
                   </div>
                 </Link>
               </div>
@@ -176,6 +170,10 @@ export default function Home() {
         pageSlug="default"
         title="EMSTRAP Multi-Agency Operations in Action"
         eyebrow="CONNECTED EMERGENCY ECOSYSTEM"
+        showEyebrowIcon={false}
+        showBadge={false}
+        showMetrics={false}
+        showAction={false}
       />
 
       {/* Platform overview strip */}
@@ -183,18 +181,133 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
             {[
-              { label: 'Emergency Response', desc: 'Real-time SOS and incident management' },
-              { label: 'Intelligent Dispatch', desc: 'Smart ambulance and fleet assignment' },
-              { label: 'Live Tracking', desc: 'GPS visibility across all responders' },
-              { label: 'Multi-Agency Coordination', desc: 'Connect all emergency stakeholders' },
-              { label: 'Analytics & Reporting', desc: 'Data-driven operational improvement' },
+              {
+                label: 'Emergency Response',
+                desc: 'Real-time SOS and incident management',
+                icon: (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2v3M4.9 4.9l2.1 2.1M19.1 4.9l-2.1 2.1" />
+                    <path d="M5 19h14a1 1 0 0 0 1-1v-2a7 7 0 0 0-14 0v2a1 1 0 0 0 1 1z" />
+                    <path d="M12 9v4" />
+                    <path d="M4 22h16" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Intelligent Dispatch',
+                desc: 'Smart ambulance and fleet assignment',
+                icon: (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M8 21h8M12 17v4" />
+                    <path d="m7 10 3 3 7-7" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Live Tracking',
+                desc: 'GPS visibility across all responders',
+                icon: (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="22" y1="12" x2="18" y2="12" />
+                    <line x1="6" y1="12" x2="2" y2="12" />
+                    <line x1="12" y1="6" x2="12" y2="2" />
+                    <line x1="12" y1="22" x2="12" y2="18" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Multi-Agency Coordination',
+                desc: 'Connect all emergency stakeholders',
+                icon: (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="3" />
+                    <circle cx="12" cy="3" r="2" />
+                    <circle cx="4" cy="19" r="2" />
+                    <circle cx="20" cy="19" r="2" />
+                    <line x1="12" y1="5" x2="12" y2="9" />
+                    <line x1="5.7" y1="17.5" x2="9.5" y2="13.8" />
+                    <line x1="18.3" y1="17.5" x2="14.5" y2="13.8" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Analytics & Reporting',
+                desc: 'Data-driven operational improvement',
+                icon: (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                    <path d="M3 20h18" />
+                  </svg>
+                ),
+              },
             ].map((item, i) => (
               <div
                 key={item.label}
                 className={`flex flex-col gap-1.5 card-entry ${platformInView ? 'is-visible' : ''}`}
                 style={{ transitionDelay: `${i * 90}ms` }}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-red mb-1" />
+                <div
+                  role="img"
+                  aria-label={item.label}
+                  className="w-12 h-12 rounded-full bg-red-50/80 border border-brand-red/25 flex items-center justify-center text-brand-red mb-2 shadow-xs"
+                >
+                  {item.icon}
+                </div>
                 <div className="text-[14px] font-semibold text-content-primary leading-snug">{item.label}</div>
                 <div className="text-[12px] text-content-secondary leading-snug">{item.desc}</div>
               </div>
@@ -215,13 +328,7 @@ export default function Home() {
                 Talk to an EMSTRAP specialist about your organisation's specific requirements.
               </p>
             </div>
-            <div className="flex gap-3 flex-shrink-0">
-              <a
-                href="#"
-                className="inline-flex items-center px-6 py-3 bg-brand-red text-white text-[14px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth whitespace-nowrap"
-              >
-                Request a Demo
-              </a>
+            <div className="flex-shrink-0">
               <a
                 href="#"
                 className="inline-flex items-center px-6 py-3 border border-white/25 text-white/80 text-[14px] font-semibold rounded-[4px] hover:bg-white/10 btn-outline-smooth whitespace-nowrap"

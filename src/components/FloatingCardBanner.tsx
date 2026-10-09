@@ -288,59 +288,39 @@ const BANNER_DATA: Record<string, BannerCard[]> = {
   default: [
     {
       id: 'home-1',
-      badge: 'LIVE CAD DISPATCH',
-      badgeType: 'live',
+      badge: '',
       image: '/images/banner/banner-ambulance.jpg',
       imageAlt: 'Force Traveller 108 ambulance with paramedics attending in Indian street environment',
       eyebrow: 'INTELLIGENT MEDICAL DISPATCH',
       title: 'Sub-Second Emergency Ambulance Dispatch & Routing',
       description: 'AI-assisted Computer-Aided Dispatch synchronizing nearest ambulance units, traffic green corridors, and receiving hospital trauma teams in one unified operational flow.',
-      metricValue: '< 45s',
-      metricLabel: 'Dispatch Time',
-      actionText: 'Ambulance Solutions',
-      actionLink: '/ambulance-providers',
     },
     {
       id: 'home-2',
-      badge: 'CITY COMMAND',
-      badgeType: 'active',
+      badge: '',
       image: '/images/banner/banner-smartcities.jpg',
       imageAlt: 'Indian city intersection with emergency vehicles and metro infrastructure',
       eyebrow: 'URBAN EMERGENCY INFRASTRUCTURE',
       title: 'Smart City Multi-Agency Operations Center',
       description: 'Connect citizens, ambulances, hospitals, police PCR vans, and traffic lights into an interoperable city-level emergency fabric.',
-      metricValue: '100%',
-      metricLabel: 'Connected Services',
-      actionText: 'Smart Cities Platform',
-      actionLink: '/smart-cities',
     },
     {
       id: 'home-3',
-      badge: 'GREEN CORRIDOR ACTIVE',
-      badgeType: 'live',
+      badge: '',
       image: '/images/banner/banner-traffic.jpg',
       imageAlt: 'Traffic control room with officer managing live emergency corridor on CCTV screens',
       eyebrow: 'TRAFFIC PREEMPTION INTELLIGENCE',
       title: 'Automated Dynamic Green Wave Corridors',
       description: 'Synchronize signal timings across 45+ city intersections ahead of moving emergency vehicles, clearing paths and reducing transit time by up to 35%.',
-      metricValue: '35%',
-      metricLabel: 'Faster Response Transit',
-      actionText: 'Traffic Solutions',
-      actionLink: '/traffic-management',
     },
     {
       id: 'home-4',
-      badge: 'ENTERPRISE READY',
-      badgeType: 'verified',
+      badge: '',
       image: '/images/banner/banner-corporate.jpg',
       imageAlt: 'Indian corporate campus emergency response drill with safety marshals and personnel',
       eyebrow: 'WORKPLACE SAFETY SHIELD',
       title: 'Comprehensive Corporate Incident Protection',
       description: 'Protect thousands of employees across multi-building campuses with instant silent panic alerts, floor marshal coordination, and direct EMS dispatch.',
-      metricValue: '< 90s',
-      metricLabel: 'Campus ERT Mobilization',
-      actionText: 'Corporate Shield',
-      actionLink: '/corporate-companies',
     },
   ],
 };
@@ -350,6 +330,10 @@ interface FloatingCardBannerProps {
   cards?: BannerCard[];
   title?: string;
   eyebrow?: string;
+  showEyebrowIcon?: boolean;
+  showBadge?: boolean;
+  showMetrics?: boolean;
+  showAction?: boolean;
 }
 
 export default function FloatingCardBanner({
@@ -357,6 +341,10 @@ export default function FloatingCardBanner({
   cards: customCards,
   title = 'Live Emergency Operations in Action',
   eyebrow = 'CONNECTED EMERGENCY RESPONSE PLATFORM',
+  showEyebrowIcon = pageSlug !== 'default',
+  showBadge = pageSlug !== 'default',
+  showMetrics = pageSlug !== 'default',
+  showAction = pageSlug !== 'default',
 }: FloatingCardBannerProps) {
   const cards = customCards ?? BANNER_DATA[pageSlug] ?? BANNER_DATA.default;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -432,7 +420,9 @@ export default function FloatingCardBanner({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-brand-red mb-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" />
+              {showEyebrowIcon && (
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping" />
+              )}
               {eyebrow}
             </div>
             <h2 className="text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-content-primary tracking-tight leading-snug">
@@ -494,21 +484,29 @@ export default function FloatingCardBanner({
                   <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-black/10 to-black/30 pointer-events-none" />
 
                   {/* Status Indicator Badge */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <div className="bg-navy-deep/85 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg border border-white/20">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                      </span>
-                      <span className="text-[11px] font-bold tracking-[0.14em] text-white">
-                        {activeCard.badge}
-                      </span>
+                  {showBadge && activeCard.badge && (
+                    <div className="absolute top-4 left-4 z-10">
+                      <div className="bg-navy-deep/85 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg border border-white/20">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                        </span>
+                        <span className="text-[11px] font-bold tracking-[0.14em] text-white">
+                          {activeCard.badge}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Content Side */}
-                <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-white border-t lg:border-t-0 lg:border-l border-border-default">
+                <div
+                  className={`lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col ${
+                    (showMetrics && activeCard.metricValue) || (showAction && activeCard.actionText)
+                      ? 'justify-between'
+                      : 'justify-center'
+                  } bg-white border-t lg:border-t-0 lg:border-l border-border-default`}
+                >
                   <div>
                     <div className="text-[11px] font-semibold tracking-[0.14em] uppercase text-brand-red mb-2">
                       {activeCard.eyebrow}
@@ -516,16 +514,22 @@ export default function FloatingCardBanner({
                     <h3 className="text-[22px] sm:text-[26px] lg:text-[28px] font-bold text-content-primary tracking-tight leading-snug mb-4">
                       {activeCard.title}
                     </h3>
-                    <p className="text-[14px] sm:text-[15px] text-content-secondary leading-relaxed mb-6">
+                    <p
+                      className={`text-[14px] sm:text-[15px] text-content-secondary leading-relaxed ${
+                        (showMetrics && activeCard.metricValue) || (showAction && activeCard.actionText)
+                          ? 'mb-6'
+                          : 'mb-0'
+                      }`}
+                    >
                       {activeCard.description}
                     </p>
                   </div>
 
                   {/* Metrics and Action Bar */}
-                  {(activeCard.metricValue || activeCard.actionText) && (
+                  {((showMetrics && activeCard.metricValue) || (showAction && activeCard.actionText)) && (
                     <div className="pt-6 border-t border-border-default flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       {/* Metric Card */}
-                      {activeCard.metricValue && activeCard.metricLabel ? (
+                      {showMetrics && activeCard.metricValue && activeCard.metricLabel ? (
                         <div className="bg-surface-light px-4 py-2.5 rounded-[10px] border border-border-default shadow-xs inline-flex items-center gap-3">
                           <div className="text-[20px] font-extrabold text-content-primary tracking-tight">
                             {activeCard.metricValue}
@@ -535,10 +539,12 @@ export default function FloatingCardBanner({
                             {activeCard.metricLabel}
                           </div>
                         </div>
-                      ) : <div />}
+                      ) : (
+                        <div />
+                      )}
 
                       {/* Action link */}
-                      {activeCard.actionText && activeCard.actionLink && (
+                      {showAction && activeCard.actionText && activeCard.actionLink && (
                         <Link
                           to={activeCard.actionLink}
                           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-red text-white text-[13px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth whitespace-nowrap self-start sm:self-auto"
