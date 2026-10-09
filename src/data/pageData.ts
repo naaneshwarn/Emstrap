@@ -75,7 +75,7 @@ export const pages: PageData[] = [
       tags: ['Employee Safety', 'Emergency Response', 'Fire Safety', 'Safety Management'],
       backgroundImage: '/images/hero-corporate.jpg',
       heroCard: {
-        badge: 'ENTERPRISE READY',
+        badge: 'CAMPUS SAFETY',
         metricValue: '< 90s',
         metricLabel: 'CAMPUS EMT MOBILIZATION',
         description: 'Instant floor marshal coordination and automated EMS dispatch across corporate campuses.',

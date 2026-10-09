@@ -210,16 +210,13 @@ function Hero({ hero }: { hero: PageData['hero'] }) {
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
               <div className="w-full max-w-[420px] bg-slate-900/80 backdrop-blur-md rounded-[12px] border border-white/15 p-6 sm:p-7 shadow-2xl animate-hero-card">
                 {/* Status Badge */}
-                <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center mb-5">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/90">
                       {hero.heroCard.badge}
                     </span>
                   </div>
-                  <span className="text-[11px] font-semibold tracking-wider text-white/50 uppercase">
-                    LIVE RESPONSE
-                  </span>
                 </div>
 
                 {/* Metric Display */}
