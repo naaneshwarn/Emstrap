@@ -154,15 +154,9 @@ export default function Home() {
                     <h3 className="text-[16px] font-bold text-content-primary mb-2 leading-snug">
                       {audience.title}
                     </h3>
-                    <p className="text-[13px] text-content-secondary leading-[1.6] mb-4 flex-1">
+                    <p className="text-[13px] text-content-secondary leading-[1.6]">
                       {audience.description}
                     </p>
-                    <div className="flex items-center gap-1.5 text-[13px] font-semibold text-blue-accent group-hover:gap-2.5 transition-all">
-                      Learn more
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover:translate-x-1">
-                        <path d="M2 7h10M8 3l4 4-4 4" />
-                      </svg>
-                    </div>
                   </div>
                 </Link>
               </div>
@@ -176,6 +170,10 @@ export default function Home() {
         pageSlug="default"
         title="EMSTRAP Multi-Agency Operations in Action"
         eyebrow="CONNECTED EMERGENCY ECOSYSTEM"
+        showEyebrowIcon={false}
+        showBadge={false}
+        showMetrics={false}
+        showAction={false}
       />
 
       {/* Platform overview strip */}
@@ -183,20 +181,76 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
             {[
-              { label: 'Emergency Response', desc: 'Real-time SOS and incident management' },
-              { label: 'Intelligent Dispatch', desc: 'Smart ambulance and fleet assignment' },
-              { label: 'Live Tracking', desc: 'GPS visibility across all responders' },
-              { label: 'Multi-Agency Coordination', desc: 'Connect all emergency stakeholders' },
-              { label: 'Analytics & Reporting', desc: 'Data-driven operational improvement' },
+              {
+                label: 'Emergency Response',
+                desc: 'Real-time SOS and incident management',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M6 18h12M12 2v4M4.93 4.93l2.83 2.83M19.07 4.93l-2.83 2.83M8 18a4 4 0 0 1 8 0" />
+                    <path d="M10 22h4" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Intelligent Dispatch',
+                desc: 'Smart ambulance and fleet assignment',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5M12 12h.01M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5M19.1 4.9C23 8.8 23 15.2 19.1 19.1" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Live Tracking',
+                desc: 'GPS visibility across all responders',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                    <line x1="12" y1="2" x2="12" y2="4" />
+                    <line x1="12" y1="20" x2="12" y2="22" />
+                    <line x1="2" y1="12" x2="4" y2="12" />
+                    <line x1="20" y1="12" x2="22" y2="12" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Multi-Agency Coordination',
+                desc: 'Connect all emergency stakeholders',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Analytics & Reporting',
+                desc: 'Data-driven operational improvement',
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                    <line x1="2" y1="20" x2="22" y2="20" />
+                  </svg>
+                ),
+              },
             ].map((item, i) => (
               <div
                 key={item.label}
-                className={`flex flex-col gap-1.5 card-entry ${platformInView ? 'is-visible' : ''}`}
+                className={`flex flex-col items-start gap-2 card-entry ${platformInView ? 'is-visible' : ''}`}
                 style={{ transitionDelay: `${i * 90}ms` }}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-red mb-1" />
+                <div className="w-11 h-11 rounded-full bg-red-50 border border-red-200/80 flex items-center justify-center text-brand-red shadow-xs">
+                  {item.icon}
+                </div>
                 <div className="text-[14px] font-semibold text-content-primary leading-snug">{item.label}</div>
-                <div className="text-[12px] text-content-secondary leading-snug">{item.desc}</div>
+                <div className="text-[12px] text-content-secondary leading-relaxed">{item.desc}</div>
               </div>
             ))}
           </div>
@@ -217,14 +271,8 @@ export default function Home() {
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <a
-                href="#"
-                className="inline-flex items-center px-6 py-3 bg-brand-red text-white text-[14px] font-semibold rounded-[4px] hover:bg-[#CC1218] btn-smooth whitespace-nowrap"
-              >
-                Request a Demo
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center px-6 py-3 border border-white/25 text-white/80 text-[14px] font-semibold rounded-[4px] hover:bg-white/10 btn-outline-smooth whitespace-nowrap"
+                href="mailto:contact@emstrap.com"
+                className="inline-flex items-center px-6 py-3 border border-white/25 text-white text-[14px] font-semibold rounded-[4px] hover:bg-white/10 btn-outline-smooth whitespace-nowrap"
               >
                 Contact Us
               </a>

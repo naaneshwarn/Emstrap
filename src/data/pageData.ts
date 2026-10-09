@@ -278,7 +278,7 @@ export const pages: PageData[] = [
           description: 'Give citizens a direct channel to activate emergency assistance with real-time location and incident data.',
         },
         {
-          image: '/images/home-ambulance.jpg',
+          image: '/images/cards/smartcity-ambulance-integration.jpg',
           title: 'Ambulance Integration',
           description: 'Connect ambulance dispatch and operations to city-wide emergency requests with intelligent assignment.',
         },
@@ -288,17 +288,17 @@ export const pages: PageData[] = [
           description: 'Notify hospitals ahead of patient arrival to prepare receiving teams and optimize care pathways.',
         },
         {
-          image: '/images/home-police.jpg',
+          image: '/images/cards/smartcity-police-integration.jpg',
           title: 'Police Integration',
           description: 'Equip police departments with real-time incident alerts, location intelligence and responder coordination.',
         },
         {
-          image: '/images/home-traffic.jpg',
+          image: '/images/cards/smartcity-traffic-coordination.jpg',
           title: 'Traffic Coordination',
           description: 'Enable traffic management teams to support emergency vehicle movement through corridor coordination.',
         },
         {
-          image: '/images/home-smart-cities.jpg',
+          image: '/images/cards/smartcity-control-centre.jpg',
           title: 'Emergency Control Centres',
           description: 'Provide control rooms with a unified operational dashboard for city-wide emergency oversight.',
         },
@@ -391,7 +391,7 @@ export const pages: PageData[] = [
           description: 'Emergency management spans health, transport, public safety and infrastructure — each with separate systems and processes.',
         },
         {
-          image: '/images/home-hero.jpg',
+          image: '/images/cards/gov-multi-emergency-services.jpg',
           title: 'Multiple Emergency Services',
           description: 'Police, ambulance, fire and civil defense operate independently with limited shared operational visibility.',
         },
@@ -422,17 +422,17 @@ export const pages: PageData[] = [
       description: 'EMSTRAP gives government agencies a centralized, technology-driven foundation for managing public emergency response at scale.',
       cards: [
         {
-          image: '/images/hero-traffic.jpg',
+          image: '/images/cards/gov-unified-coordination.jpg',
           title: 'Unified Emergency Coordination',
           description: 'A single platform connecting all government emergency services with shared alerts, incidents and response tracking.',
         },
         {
-          image: '/images/hero-smart-cities.jpg',
+          image: '/images/cards/gov-state-command-centre.jpg',
           title: 'Command Centre',
           description: 'A centralized operations dashboard for senior officials to monitor all active incidents and direct resources.',
         },
         {
-          image: '/images/home-government.jpg',
+          image: '/images/cards/gov-multi-agency-coordination.jpg',
           title: 'Multi-Agency Coordination',
           description: 'Connect police, ambulance, hospitals, traffic authorities and emergency services on one operational network.',
         },
@@ -545,7 +545,7 @@ export const pages: PageData[] = [
           description: 'Dispatchers struggle to identify the nearest available ambulance in real time without a live fleet visibility tool.',
         },
         {
-          image: '/images/cards/smartcity-ambulance-traffic.jpg',
+          image: '/images/cards/amb-traffic-delays.jpg',
           title: 'Traffic-Related Delays',
           description: 'Ambulances lose critical minutes navigating urban congestion without intelligent route guidance and traffic coordination.',
         },
@@ -586,7 +586,7 @@ export const pages: PageData[] = [
           description: 'Route optimization and traffic coordination to minimize response times for every active emergency.',
         },
         {
-          image: '/images/cards/smartcity-hospital-coordination.jpg',
+          image: '/images/cards/amb-hospital-handover.jpg',
           title: 'Hospital Coordination',
           description: 'Automatic advance notifications to receiving hospitals with patient status and estimated arrival time.',
         },
@@ -704,7 +704,7 @@ export const pages: PageData[] = [
           description: 'Coordination between traffic control and emergency responders relies on phone calls and radio with no shared data layer.',
         },
         {
-          image: '/images/cards/smartcity-aerial-grid.jpg',
+          image: '/images/cards/traffic-route-awareness.jpg',
           title: 'Limited Emergency Route Awareness',
           description: 'Traffic controllers lack the tools to identify optimal emergency corridors and act on them proactively.',
         },
@@ -720,12 +720,12 @@ export const pages: PageData[] = [
           description: 'Live GPS tracking of all active emergency vehicles visible to traffic control centre operators.',
         },
         {
-          image: '/images/hero-traffic.jpg',
+          image: '/images/cards/traffic-route-intelligence.jpg',
           title: 'Emergency Route Intelligence',
           description: 'Automated identification of optimal emergency vehicle routes based on live traffic conditions.',
         },
         {
-          image: '/images/home-traffic.jpg',
+          image: '/images/cards/traffic-corridor-coordination.jpg',
           title: 'Traffic Coordination',
           description: 'Structured tools for traffic operators to manage flows and support emergency response in real time.',
         },
@@ -735,7 +735,7 @@ export const pages: PageData[] = [
           description: 'Coordinate signal priority and corridor clearance to support unobstructed emergency vehicle movement.',
         },
         {
-          image: '/images/hero-smart-cities.jpg',
+          image: '/images/cards/traffic-live-map.jpg',
           title: 'Live Emergency Map',
           description: 'A real-time operational map showing active incidents, emergency vehicles and route status for all operators.',
         },
@@ -832,12 +832,12 @@ export const pages: PageData[] = [
           description: 'Police, ambulance and hospital communication runs through separate systems with no unified information layer.',
         },
         {
-          image: '/images/home-police.jpg',
+          image: '/images/cards/police-realtime-visibility.jpg',
           title: 'Limited Real-Time Visibility',
           description: 'Without live tracking tools, police command centres cannot monitor officer positions and active incident status simultaneously.',
         },
         {
-          image: '/images/home-hero.jpg',
+          image: '/images/cards/police-multi-responder.jpg',
           title: 'Multi-Responder Coordination',
           description: 'Coordinating police, ambulance and other services at the same incident requires structured tools that radio alone cannot provide.',
         },
@@ -847,7 +847,7 @@ export const pages: PageData[] = [
           description: 'Paper-based or disconnected record systems create compliance gaps and make post-incident review time-consuming.',
         },
         {
-          image: '/images/cards/smartcity-ops-centre.jpg',
+          image: '/images/cards/police-unified-info.jpg',
           title: 'Lack of Unified Emergency Information',
           description: 'Officers on the ground and commanders at HQ work from different, incomplete versions of the same incident picture.',
         },
@@ -868,7 +868,7 @@ export const pages: PageData[] = [
           description: 'Live mapping of active incidents, officer positions and other emergency responders on a shared operational map.',
         },
         {
-          image: '/images/cards/smartcity-multi-agency.jpg',
+          image: '/images/cards/police-responder-coordination.jpg',
           title: 'Responder Coordination',
           description: 'Coordinate police response with ambulance, hospital and traffic management through one connected platform.',
         },
