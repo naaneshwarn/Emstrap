@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router';
+import { Link } from '@tanstack/react-router';
 
 export interface BannerCard {
   id: string;
@@ -335,18 +335,18 @@ export default function FloatingCardBanner({
   cards: customCards,
   title = 'Live Emergency Operations in Action',
   eyebrow = 'CONNECTED EMERGENCY RESPONSE PLATFORM',
-  showEyebrowIcon = true,
-  showBadge = true,
-  showMetrics = true,
-  showAction = true,
+  showEyebrowIcon = false,
+  showBadge = false,
+  showMetrics = false,
+  showAction = false,
 }: FloatingCardBannerProps) {
-  const cards = customCards ?? BANNER_DATA[pageSlug] ?? BANNER_DATA.default;
+  const cards = customCards ?? BANNER_DATA[pageSlug] ?? BANNER_DATA['default']!;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [animating, setAnimating] = useState(false);
   const timerRef = useRef<number | null>(null);
 
-  const activeCard = cards[currentIndex] ?? cards[0];
+  const activeCard = cards[currentIndex] ?? cards[0]!;
 
   const startTimer = () => {
     if (timerRef.current) {
@@ -591,7 +591,7 @@ export default function FloatingCardBanner({
               className={`cursor-pointer transition-all duration-300 rounded-full ${
                 idx === currentIndex
                   ? 'w-8 h-2.5 bg-brand-red'
-                  : 'w-2.5 h-2.5 bg-border-strong hover:bg-content-muted'
+                  : 'w-2.5 h-2.5 bg-border-default hover:bg-content-secondary'
               }`}
             />
           ))}

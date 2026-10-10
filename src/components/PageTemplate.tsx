@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from '@tanstack/react-router';
 import type { PageData } from '../data/pageData';
 import { useInView } from '../hooks/useInView';
 import FloatingCardBanner from './FloatingCardBanner';
@@ -205,58 +205,6 @@ function Hero({ hero }: { hero: PageData['hero'] }) {
             </div>
           </div>
 
-          {/* Right Column: Hero Metric & Action Card */}
-          {hero.heroCard && (
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="w-full max-w-[420px] bg-slate-900/80 backdrop-blur-md rounded-[12px] border border-white/15 p-6 sm:p-7 shadow-2xl animate-hero-card">
-                {/* Status Badge */}
-                <div className="flex items-center mb-5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/90">
-                      {hero.heroCard.badge}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Metric Display */}
-                <div className="bg-slate-950/70 rounded-[10px] border border-white/10 p-5 mb-5">
-                  <div className="text-[38px] sm:text-[44px] font-extrabold text-white tracking-tight leading-none mb-2">
-                    {hero.heroCard.metricValue}
-                  </div>
-                  <div className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] uppercase text-white/85">
-                    {hero.heroCard.metricLabel}
-                  </div>
-                </div>
-
-                {/* Card Description */}
-                <p className="text-[13.5px] sm:text-[14px] text-white/75 leading-relaxed mb-6">
-                  {hero.heroCard.description}
-                </p>
-
-                {/* Red CTA Button with Arrow */}
-                <a
-                  href={hero.heroCard.actionLink || '#solutions'}
-                  className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-brand-red text-white text-[14px] font-semibold rounded-[6px] hover:bg-[#CC1218] transition-all duration-200 shadow-md group"
-                >
-                  <span>{hero.heroCard.actionText}</span>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="transform transition-transform duration-200 group-hover:translate-x-1"
-                  >
-                    <path d="M3 8h10M9 4l4 4-4 4" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>
@@ -409,7 +357,7 @@ function BenefitItem({
             isEmergency ? 'bg-red-pale text-brand-red' : 'bg-surface-light text-blue-accent'
           }`}
         >
-          <div className="w-5 h-5">{ICONS[iconName] ?? ICONS.clock}</div>
+          <div className="w-5 h-5">{ICONS[iconName] ?? ICONS['clock']}</div>
         </div>
         <div className="flex-1 flex flex-col">
           <h3 className="text-[15px] font-semibold text-content-primary mb-1.5 leading-snug">{title}</h3>
@@ -669,9 +617,6 @@ export default function PageTemplate({ data }: { data: PageData }) {
       <ChallengeSection data={data.challenge} />
       <FloatingCardBanner
         pageSlug={data.slug}
-        showBadge={true}
-        showMetrics={true}
-        showAction={true}
       />
       <HowHelpsSection data={data.howHelps} />
       <BenefitsSection data={data.benefits} />

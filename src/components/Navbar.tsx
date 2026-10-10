@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 
 const serveLinks = [
   { label: 'Corporate Companies', path: '/corporate-companies' },
